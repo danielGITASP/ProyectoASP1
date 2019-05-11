@@ -51,4 +51,5 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" />
     </p>
+        </form>
 </asp:Content>
