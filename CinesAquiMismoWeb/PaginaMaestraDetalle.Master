@@ -1,0 +1,23 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="PaginaMaestraDetalle.master.cs" Inherits="CinesAquiMismoWeb.PaginaMaestraDetalle" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <h1><u>---GESTIÓN DE DATOS---</u></h1>
+     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            
+    <form id="form1" runat="server">
+        <div>
+           
+        </div>
+    </form>
+         </asp:ContentPlaceHolder>
+</body>
+</html>
