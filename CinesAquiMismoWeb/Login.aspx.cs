@@ -19,6 +19,7 @@ namespace CinesAquiMismoWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["logeo"] = false;
+            Session["logeoU"] = false;
             Label6.Text = DateTime.Now.ToString();
 
             if (!Page.IsPostBack)
@@ -39,12 +40,16 @@ namespace CinesAquiMismoWeb
             txtAlias.Visible = !txtAlias.Visible;
             txtLogin.Visible = !txtLogin.Visible;
             btnRegistro.Visible = !btnRegistro.Visible;
+            txtMovil.Visible = !txtMovil.Visible;
+            txtEmail.Visible = !txtEmail.Visible;
 
             Label1.Visible = !Label1.Visible;
             Label2.Visible = !Label2.Visible;
             Label3.Visible = !Label3.Visible;
             Label4.Visible = !Label4.Visible;
             Label5.Visible = !Label5.Visible;
+            Label15.Visible = !Label15.Visible;
+            Label16.Visible = !Label16.Visible;
         }
 
         protected void btnAcceder_Click(object sender, EventArgs e)
@@ -96,7 +101,8 @@ namespace CinesAquiMismoWeb
 
             if (Log && acceso == "Usuario")
             {
-                Session["logeo"] = true;
+                Session["logeoU"] = true;
+                Session["NombreU"] = txtUsu.Text;
                 Response.Redirect("PeliculasUsuario.aspx");
             }
             else if (Log && acceso == "Admin")
@@ -129,13 +135,14 @@ namespace CinesAquiMismoWeb
             // Construimos un registro nuevo
             DataSet1.UsuariosRow regUsuario = usuariosTabla.NewUsuariosRow();
             // rellenamos el registro
-            regUsuario.IdUsuario = usuariosTabla.Rows.Count + 1;
             regUsuario.Nombre = txtNombre.Text;
             regUsuario.Password = txtContra.Text;
             regUsuario.Alias = txtAlias.Text;
             regUsuario.Login = txtLogin.Text;
             regUsuario.Acceso = 0;
             regUsuario.TipoAcceso = "SinRegistro";
+            regUsuario.Movil = Convert.ToInt32(txtMovil.Text);
+            regUsuario.Email = txtEmail.Text;
 
             //Usuario existente
             String nombreU;
@@ -161,7 +168,6 @@ namespace CinesAquiMismoWeb
 
             }
         
-            
 
             if (Repetida)
             {

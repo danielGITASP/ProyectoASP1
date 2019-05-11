@@ -49,7 +49,7 @@ namespace CinesAquiMismoWeb
                     }
                 }
             }
-            else
+            else if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                 Response.Redirect("Login.aspx");
@@ -172,6 +172,18 @@ namespace CinesAquiMismoWeb
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Page.ClientScript.RegisterStartupScript(this.GetType(), "myCloseScript", "window.close()", true);
+        }
+
+        protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if(txtMovil.Text.Length != 9)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
         }
     }
 }

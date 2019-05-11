@@ -22,6 +22,11 @@ namespace CinesAquiMismoWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Convert.ToBoolean(Session["logeo"]) || !Convert.ToBoolean(Session["logeoU"]))
+            {
+                Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
+                Response.Redirect("Login.aspx");
+            }
 
         }
 
@@ -45,9 +50,7 @@ namespace CinesAquiMismoWeb
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = nc;
             smtp.Port = 587;
-
-            
-
+          
             usuariosTabla = usuariosAdapter.GetData();
             string emailT = txtEmail.Text;
             string emailU;
@@ -66,7 +69,6 @@ namespace CinesAquiMismoWeb
                     lblCorreo.Text = "Se ha enviado el correo";
                     lblCorreo.Visible = true;
                 }
-
             }
 
             if (!mandado)

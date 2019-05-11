@@ -22,7 +22,6 @@ namespace CinesAquiMismoWeb
 
         static PeliculasTableAdapter peliculasAdapter = new PeliculasTableAdapter();
         static DataSet1.PeliculasDataTable peliculasTabla = new DataSet1.PeliculasDataTable();
-        private Default HttpContextHandler;
 
         public Pelicula Peli
         {
@@ -50,7 +49,7 @@ namespace CinesAquiMismoWeb
                     }
                 }
             }
-            else
+            else if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                 Response.Redirect("Login.aspx");
@@ -79,7 +78,6 @@ namespace CinesAquiMismoWeb
             ddlCinesDetalle.DataSource = listaCines;
             ddlCinesDetalle.DataValueField = "IdCine";
             ddlCinesDetalle.DataTextField = "nombreCine";
-
 
             ddlCinesDetalle.DataBind();
         }
@@ -116,7 +114,6 @@ namespace CinesAquiMismoWeb
                         if (Convert.ToInt32(ddlCinesDetalle.SelectedValue) == cb)
                             Repetida = true;
                     }
-
                 }
             }
             else
@@ -141,9 +138,7 @@ namespace CinesAquiMismoWeb
                     }                
                 }
             }
-                
-
-            
+                           
             if (Repetida)
             {
                 Response.Write("<script>alert('YA EXISTE ESA PELICULA')</script>");
@@ -160,10 +155,10 @@ namespace CinesAquiMismoWeb
                 LNyAD.ModificaPelicula(peli);
             }
 
-            ddlCinesDetalle.Items.Remove("Elige un Cine");           
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "myCloseScript", "window.close()", true);
 
-
+                ddlCinesDetalle.Items.Remove("Elige un Cine");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "myCloseScript", "window.close()", true);
+          
         }
 
 

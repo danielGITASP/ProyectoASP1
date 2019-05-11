@@ -15,7 +15,11 @@ namespace CinesAquiMismoWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
+                {
+                Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
+                Response.Redirect("Login.aspx");
+            }
         }
 
         protected void ddlGraf_SelectedIndexChanged(object sender, EventArgs e)
@@ -89,7 +93,7 @@ namespace CinesAquiMismoWeb
                     Chart1.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Bubble;
                     break;
             }
-            Chart1.SaveImage(imgPath);
+            //Chart1.SaveImage(imgPath);
             
            
             Response.Clear();
@@ -138,7 +142,7 @@ namespace CinesAquiMismoWeb
                     Chart1.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Bubble;
                     break;
             }
-            Chart1.SaveImage(imgPath);
+            //Chart1.SaveImage(imgPath);
 
             Response.Clear();
             Response.ContentType = "application/vnd.ms-word";

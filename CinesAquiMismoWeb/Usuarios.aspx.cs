@@ -18,6 +18,7 @@ namespace CinesAquiMismoWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (Convert.ToBoolean(Session["logeo"]))
             {
                 if (!Page.IsPostBack)
@@ -25,7 +26,7 @@ namespace CinesAquiMismoWeb
                     CargaAccesos();
                 }
             }
-            else
+            else if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                 Response.Redirect("Login.aspx");
@@ -46,12 +47,11 @@ namespace CinesAquiMismoWeb
             dgvUsuarios.DataSource = LNyAD.TablaUsuarios(idAcceso, acceso);
             dgvUsuarios.DataBind();
 
-            foreach (GridViewRow fila in dgvUsuarios.Rows)
-            {
-
-                dgvUsuarios.HeaderRow.Cells[1].Visible = false;
-                fila.Cells[1].Visible = false;
-            }
+            //foreach (GridViewRow fila in dgvUsuarios.Rows)
+            //{
+            //    dgvUsuarios.HeaderRow.Cells[1].Visible = false;
+            //    fila.Cells[1].Visible = false;
+            //}
         }
 
 
@@ -106,23 +106,31 @@ namespace CinesAquiMismoWeb
                 }
 
                 dgvUsuarios.Enabled = false;
-                ddlTipoAccesos.Visible = false;
+                ddlTipoAccesos.Enabled = false;
                 btnAñadir.Visible = false;
                 btnVolver.Visible = false;
                 lbConfirmar.Text = "¿Eliminar a " + dgvUsuarios.SelectedRow.Cells[2].Text + "?";
                 btnSi.Visible = true;
                 btnNo.Visible = true;
                 lbConfirmar.Visible = true;
+                btnPeliculas.Visible = false;
+                btnCines.Visible = false;
+                btnPaises.Visible = false;
+                btnTickets.Visible = false;
             }
             else
             {
                 dgvUsuarios.Enabled = true;
-                ddlTipoAccesos.Visible = true;
+                ddlTipoAccesos.Enabled = true;
                 btnAñadir.Visible = true;
                 btnVolver.Visible = true;
                 btnSi.Visible = false;
                 btnNo.Visible = false;
                 lbConfirmar.Visible = false;
+                btnPeliculas.Visible = true;
+                btnCines.Visible = true;
+                btnPaises.Visible = true;
+                btnTickets.Visible = true;
             }
         }
 

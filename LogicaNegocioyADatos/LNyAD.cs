@@ -38,6 +38,7 @@ namespace LogicaNegocioyADatos
             return listaCines;
         }
 
+
         public static DataSet1.PeliculasDataTable TablaPelis(int idCine)
         {
             if(idCine == 0)
@@ -467,6 +468,14 @@ namespace LogicaNegocioyADatos
 
             ticketsAdapter.Update(regTicket);
             ticketsTabla.AcceptChanges();
+        }
+
+        public static DataSet1.TicketsDataTable TablaTickets(string ticket)
+        {
+            ticketsTabla = ticketsAdapter.GetDataByCodigo(ticket);
+
+
+            return ticketsTabla;
         }
 
 

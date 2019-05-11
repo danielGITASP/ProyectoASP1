@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -95,15 +95,19 @@
     <Content Include="Cines.aspx" />
     <Content Include="CinesDetalle.aspx" />
     <Content Include="ComprarTicket.aspx" />
+    <Content Include="ContraCambio.aspx" />
     <Content Include="ContraOlvidada.aspx" />
     <Content Include="estilos.css" />
     <Content Include="Grafico.aspx" />
     <Content Include="img\cineadmin.jpg" />
+    <Content Include="img\contra.jpg" />
     <Content Include="img\logincines.jpg" />
+    <Content Include="img\paises.jpg" />
     <Content Include="img\pelisusuario.jpg" />
     <Content Include="img\steampunk-rotation-of-the-gears_rtup4fcl__F0000.png" />
     <Content Include="img\taquillas-660x374.jpg" />
     <Content Include="img\Teaser-Cinema-1200-500.jpg" />
+    <Content Include="img\tickets.jpg" />
     <Content Include="img\usuadmin.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
@@ -172,6 +176,13 @@
     </Compile>
     <Compile Include="ComprarTicket.aspx.designer.cs">
       <DependentUpon>ComprarTicket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContraCambio.aspx.cs">
+      <DependentUpon>ContraCambio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContraCambio.aspx.designer.cs">
+      <DependentUpon>ContraCambio.aspx</DependentUpon>
     </Compile>
     <Compile Include="ContraOlvidada.aspx.cs">
       <DependentUpon>ContraOlvidada.aspx</DependentUpon>
@@ -310,8 +321,8 @@
     <PropertyGroup>
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

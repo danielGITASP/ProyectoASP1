@@ -13,13 +13,37 @@
                 }
                 catch(e) {
                 }
-                window.close();
               }
             }
             window.onunload=function() {
               reloadOpener();
             }
         }
+
+
+        function validarPermiso() {
+            if (ddlAccesoD.SelectedIndex > 0)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }
+        }
+
+
+        function validarMovil() {
+            if(txtMovil.Text.Length != 9)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+
     </script>
 
 </asp:Content>
@@ -54,12 +78,13 @@
                 <asp:ListItem>SinRegistro</asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlAccesoD" ErrorMessage="Acceso" ForeColor="Red">*</asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="ddlAccesoD" ErrorMessage="Debe elegir un acceso." ForeColor="Red" OnServerValidate="CustomValidatorCBAcceso_ServerValidate"></asp:CustomValidator>
+            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="ddlAccesoD" ErrorMessage="Debe elegir un acceso." ForeColor="Red" OnServerValidate="CustomValidatorCBAcceso_ServerValidate" ClientValidationFunction="validarPermiso"></asp:CustomValidator>
         </p>
         <p>
             <asp:Label ID="Label6" runat="server" Text="Movil:"></asp:Label>
-            <asp:TextBox ID="txtMovil" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtMovil" runat="server" CausesValidation="True" TextMode="Number"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtMovil" ErrorMessage="Falta Movil." ForeColor="Red">*</asp:RequiredFieldValidator>
+            <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="txtMovil" ErrorMessage="Debe tener 9 cifras." ForeColor="Red" OnServerValidate="CustomValidator2_ServerValidate" ValidateEmptyText="True" ClientValidationFunction="validarMovil"></asp:CustomValidator>
             <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtMovil" ErrorMessage="Debe empezar por 6 o 7." ForeColor="Red" MaximumValue="799999999" MinimumValue="600000000"></asp:RangeValidator>
         </p>
         <p>

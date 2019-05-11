@@ -34,7 +34,7 @@ namespace CinesAquiMismoWeb
                     CargaPeliculasCine();
                 }
             }
-            else
+            else if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                 
@@ -166,7 +166,7 @@ namespace CinesAquiMismoWeb
             if (mostrado)
             {
                 dgvAdminP.Enabled = false;
-                ddlCines.Visible = false;
+                ddlCines.Enabled = false;
                 btnAñadir.Visible = false;
                 btnVolver.Visible = false;
                 lbConfirmar.Text = "¿Eliminar a " + dgvAdminP.SelectedRow.Cells[2].Text + "?";
@@ -175,11 +175,17 @@ namespace CinesAquiMismoWeb
                 lbConfirmar.Visible = true;
                 btnCines.Visible = false;
                 btnUsuarios.Visible = false;
+                btnPaises.Visible = false;
+                btnTickets.Visible = false;
+                btnGraf.Visible = false;
+                btnExcel.Visible = false;
+                btnPDF.Visible = false;
+                txtNombreP.Enabled = false;
             }
             else
             {
                 dgvAdminP.Enabled = true;
-                ddlCines.Visible = true;
+                ddlCines.Enabled = true;
                 btnAñadir.Visible = true;
                 btnVolver.Visible = true;
                 btnSi.Visible = false;
@@ -187,6 +193,12 @@ namespace CinesAquiMismoWeb
                 lbConfirmar.Visible = false;
                 btnCines.Visible = true;
                 btnUsuarios.Visible = true;
+                btnPaises.Visible = true;
+                btnTickets.Visible = true;
+                btnGraf.Visible = true;
+                btnExcel.Visible = true;
+                btnPDF.Visible = true;
+                txtNombreP.Enabled = true;
             }
         }
 

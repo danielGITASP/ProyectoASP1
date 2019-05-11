@@ -40,7 +40,13 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#383838" />
         </asp:GridView>
-        <asp:Button ID="btnVolver" runat="server" PostBackUrl="~/Login.aspx" Text="Volver" />
+        <br />
+        <asp:Button ID="btnCambiar" runat="server" BorderColor="Black" Font-Bold="True" OnClick="btnCambiar_Click" Text="Cambiar Contraseña" />
+&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnVolver" runat="server" PostBackUrl="~/Login.aspx" Text="Volver" BorderColor="Black" Font-Bold="True" />
+        <br />
+        <br />
+        <br />
     </form>
 </body>
 </html>

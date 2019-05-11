@@ -18,16 +18,15 @@ namespace CinesAquiMismoWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(Session["logeo"]))
+            if (Convert.ToBoolean(Session["logeoU"]))
             {
-
                 if (!Page.IsPostBack)
                 {
                     CargaCombo();
                     CargaCines();
                 }
             }
-            else
+            else if(Convert.ToBoolean(Session["logeo"]) || !Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                 Response.Redirect("Login.aspx");
@@ -111,6 +110,10 @@ namespace CinesAquiMismoWeb
             }
         }
 
+        protected void btnCambiar_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow", "window.open('ContraCambio.aspx','Cambio de Contraseña','menubar=1,resizable=1,width=900,height=600');", true);
 
+        }
     }
 }

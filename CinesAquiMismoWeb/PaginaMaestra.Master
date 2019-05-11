@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="PaginaMaestra.master.cs" Inherits="CinesAquiMismoWeb.PaginaMaestra" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PaginaMaestra.master.cs" Inherits="CinesAquiMismoWeb.PaginaMaestra" %>
 
 <!DOCTYPE html>
 
@@ -16,7 +16,7 @@
     <h1><u>---Cines Aqui Mismo---</u></h1>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
-        <div>
+        <div style="width:1024px; height:auto; background-repeat: repeat-y">
 
                    
         </div>

@@ -21,6 +21,7 @@ namespace CinesAquiMismoWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             if (Convert.ToBoolean(Session["logeo"]))
             {
                 if (!Page.IsPostBack)
@@ -28,7 +29,7 @@ namespace CinesAquiMismoWeb
                     CargaZonas();
                 }
             }
-            else
+            else if(!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
 
@@ -88,23 +89,32 @@ namespace CinesAquiMismoWeb
             if (mostrado)
             {
                 dgvCines.Enabled = false;
-                ddlZonas.Visible = false;
+                ddlZonas.Enabled = false;
                 btnAñadir.Visible = false;
                 btnVolver.Visible = false;
                 lbConfirmar.Text = "¿Eliminar a " + dgvCines.SelectedRow.Cells[2].Text + "?";
                 btnSi.Visible = true;
                 btnNo.Visible = true;
                 lbConfirmar.Visible = true;
+                btnPeliculas.Visible = false;
+                btnUsuarios.Visible = false;
+                btnPaises.Visible = false;
+                btnTickets.Visible = false;
+
             }
             else
             {
                 dgvCines.Enabled = true;
-                ddlZonas.Visible = true;
+                ddlZonas.Enabled = true;
                 btnAñadir.Visible = true;
                 btnVolver.Visible = true;
                 btnSi.Visible = false;
                 btnNo.Visible = false;
                 lbConfirmar.Visible = false;
+                btnPeliculas.Visible = true;
+                btnUsuarios.Visible = true;
+                btnPaises.Visible = true;
+                btnTickets.Visible = true;
             }
         }
 

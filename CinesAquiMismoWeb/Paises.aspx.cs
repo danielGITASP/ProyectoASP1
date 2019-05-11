@@ -1,4 +1,5 @@
 ﻿using LogicaNegocioyADatos;
+using LogicaNegocioyADatos.DataSet1TableAdapters;
 using LogicaNegocioyADatos.Entidades;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace CinesAquiMismoWeb
 {
     public partial class Paises : System.Web.UI.Page
     {
+        static CinesTableAdapter cinesAdapter = new CinesTableAdapter();
+        static DataSet1.CinesDataTable cinesTabla = new DataSet1.CinesDataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Convert.ToBoolean(Session["logeo"]))
@@ -21,7 +24,7 @@ namespace CinesAquiMismoWeb
                     CargaPaises();
                 }
             }
-            else
+            else if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
 
@@ -56,12 +59,14 @@ namespace CinesAquiMismoWeb
             dgvPaises.DataSource = LNyAD.TablaPaises(idPais);
             dgvPaises.DataBind();
 
-            //foreach (GridViewRow fila in dgvPaises.Rows)
-            //{
-            //    dgvPaises.HeaderRow.Cells[1].Visible = false;
-            //    fila.Cells[1].Visible = false;
-            //}
+            foreach (GridViewRow fila in dgvPaises.Rows)
+            {
+                dgvPaises.HeaderRow.Cells[1].Visible = false;
+                fila.Cells[1].Visible = false;
 
+                dgvPaises.HeaderRow.Cells[4].Visible = false;
+                fila.Cells[4].Visible = false;
+            }
         }
 
         protected void btnAñadir_Click(object sender, EventArgs e)
@@ -98,7 +103,7 @@ namespace CinesAquiMismoWeb
             if (mostrado)
             {
                 dgvPaises.Enabled = false;
-                ddlPaises.Visible = false;
+                ddlPaises.Enabled = false;
                 btnAñadir.Visible = false;
                 btnVolver.Visible = false;
                 lbConfirmar.Text = "¿Eliminar a " + dgvPaises.SelectedRow.Cells[2].Text + "?";
@@ -107,11 +112,13 @@ namespace CinesAquiMismoWeb
                 lbConfirmar.Visible = true;
                 btnCines.Visible = false;
                 btnUsuarios.Visible = false;
+                btnPeliculas.Visible = false;
+                btnTicket.Visible = false;
             }
             else
             {
                 dgvPaises.Enabled = true;
-                ddlPaises.Visible = true;
+                ddlPaises.Enabled = true;
                 btnAñadir.Visible = true;
                 btnVolver.Visible = true;
                 btnSi.Visible = false;
@@ -119,6 +126,8 @@ namespace CinesAquiMismoWeb
                 lbConfirmar.Visible = false;
                 btnCines.Visible = true;
                 btnUsuarios.Visible = true;
+                btnPeliculas.Visible = true;
+                btnTicket.Visible = true;
             }
         }
 

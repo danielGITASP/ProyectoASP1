@@ -29,7 +29,7 @@
     <form id="form1" runat="server" style="background-image: url('img/logincines.jpg'); background-repeat: repeat-y;">
         <div>
             <h1>
-                <asp:Label ID="Label13" runat="server" Text="CinesAquiMismoWeb"></asp:Label>
+                <asp:Label ID="Label13" runat="server" Text="CinesAquiMismo-Web"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="Label8" runat="server" Text="LOGIN"></asp:Label>
                 <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
             </h1>
@@ -78,6 +78,7 @@
             <asp:Label ID="Label2" runat="server" Text="Contraseña:" Visible="False"></asp:Label>
             <asp:TextBox ID="txtContra" runat="server" TextMode="Password" Visible="False" ValidationGroup="registro" MaxLength="15" ></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtContra" ErrorMessage="Falta Contraseña." ForeColor="Red" ValidationGroup="registro">*</asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtContraR" ControlToValidate="txtContra" ErrorMessage="Las contraseñas son distintas." ForeColor="Red" ValidationGroup="registro">*</asp:CompareValidator>
         </p>
         <p class="auto-style5">
             &nbsp;<asp:Label ID="Label3" runat="server" Text="Repetir Contraseña:" Visible="False"></asp:Label>
@@ -96,6 +97,20 @@
             <asp:Label ID="Label5" runat="server" Text="Login:" Visible="False"></asp:Label>
             <asp:TextBox ID="txtLogin" runat="server" Visible="False" ValidationGroup="registro" MaxLength="15"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtLogin" ErrorMessage="Falta Login." ForeColor="Red" ValidationGroup="registro">*</asp:RequiredFieldValidator>
+        </p>
+        <p class="auto-style2">
+            &nbsp;
+            <asp:Label ID="Label15" runat="server" Text="Móvil:" Visible="False"></asp:Label>
+            <asp:TextBox ID="txtMovil" runat="server" ValidationGroup="registro" Visible="False"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtMovil" ErrorMessage="Falta el Móvil." ForeColor="Red" ValidationGroup="registro">*</asp:RequiredFieldValidator>
+            <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtMovil" ErrorMessage="Debe empezar por 6 o 7." ForeColor="Red" MaximumValue="799999999" MinimumValue="600000000" ValidationGroup="registro"></asp:RangeValidator>
+        </p>
+        <p class="auto-style2">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label16" runat="server" Text="Email:" Visible="False"></asp:Label>
+            <asp:TextBox ID="txtEmail" runat="server" ValidationGroup="registro" Visible="False"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtEmail" ErrorMessage="Falta el Email." ForeColor="Red" ValidationGroup="registro">*</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email incorrecto." ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="registro"></asp:RegularExpressionValidator>
         </p>
         <div class="auto-style4">
             <asp:Button ID="btnRegistro" runat="server" Text="Registrarse" Visible="False" style="margin-bottom:10px" OnClick="btnRegistro_Click" ValidationGroup="registro" CssClass="auto-style3" Font-Bold="True" Font-Size="Medium" Height="38px" />

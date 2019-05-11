@@ -31,13 +31,13 @@ namespace CinesAquiMismoWeb {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control txtNombre.
+        /// Control ddlNombrePais.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNombrePais;
         
         /// <summary>
         /// Control RequiredFieldValidator1.
@@ -112,13 +112,13 @@ namespace CinesAquiMismoWeb {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Control txtValoracion.
+        /// Control ddlValor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtValoracion;
+        protected global::System.Web.UI.WebControls.DropDownList ddlValor;
         
         /// <summary>
         /// Control RequiredFieldValidator4.

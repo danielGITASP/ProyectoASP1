@@ -22,12 +22,10 @@ namespace CinesAquiMismoWeb
             {
                 if (!Page.IsPostBack)
                 {
-                    //CargaCombo();Quizas hacer un buscador escrito para usuario
                     CargaTickets();
                 }
-
             }
-            else
+            else if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
 
@@ -37,7 +35,16 @@ namespace CinesAquiMismoWeb
 
         private void CargaTickets()
         {
-            dgvTickets.DataSource = ticketsAdapter.GetData();
+            string ticket = txtCodigoF.Text;
+            if(ticket == "")
+            {
+                dgvTickets.DataSource = ticketsAdapter.GetData();
+            }
+            else
+            {
+                dgvTickets.DataSource = LNyAD.TablaTickets(ticket);
+            }
+
             dgvTickets.DataBind();
 
             List<Usuario> listaUsuarios = LNyAD.ListaUsuarios();
@@ -51,10 +58,11 @@ namespace CinesAquiMismoWeb
 
                 idU = Convert.ToInt32(dgvTickets.Rows[i].Cells[4].Text);
 
-                for (int j = 0; j <= listaUsuarios.Count - 1; j++)
+                for (int j = 0; j < listaUsuarios.Count; j++)
                 {
-                    if (j == idU)
-                        dgvTickets.Rows[i].Cells[4].Text = listaUsuarios[j - 1].Nombre;
+                    if (listaUsuarios[j].IdUsuario == idU)
+                        
+                        dgvTickets.Rows[i].Cells[4].Text = listaUsuarios[j].Nombre;
                 }
             }
                        
@@ -89,6 +97,9 @@ namespace CinesAquiMismoWeb
                 lbConfirmar.Visible = true;
                 btnCines.Visible = false;
                 btnUsuarios.Visible = false;
+                btnPeliculas.Visible = false;
+                btnPaises.Visible = false;
+                txtCodigoF.Enabled = false;
             }
             else
             {
@@ -99,6 +110,10 @@ namespace CinesAquiMismoWeb
                 lbConfirmar.Visible = false;
                 btnCines.Visible = true;
                 btnUsuarios.Visible = true;
+                btnPeliculas.Visible = true;
+                btnPaises.Visible = true;
+                txtCodigoF.Enabled = true;
+
             }
         }
 
@@ -119,8 +134,9 @@ namespace CinesAquiMismoWeb
             dgvTickets.SelectedIndex = -1;
         }
 
-
-
-
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            CargaTickets();
+        }
     }
 }

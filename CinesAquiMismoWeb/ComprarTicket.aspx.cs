@@ -24,11 +24,11 @@ namespace CinesAquiMismoWeb
         {
             if (!Page.IsPostBack)
             {
-                if (Convert.ToBoolean(Session["logeo"]))
+                if (Convert.ToBoolean(Session["logeoU"]))
                 {
                     ddlTipoTarjeta.Items.Insert(0, "Elige un tipo de tarjeta");
                 }
-                else
+                else if (!Convert.ToBoolean(Session["logeoU"]) || Convert.ToBoolean(Session["logeo"]))
                 {
                     Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                     Response.Redirect("Login.aspx");
@@ -55,22 +55,17 @@ namespace CinesAquiMismoWeb
 
                     var finalString = new String(stringChars);
                     txtVCodigo.Text = finalString;
-
                 }
                 else
                 {
                     Response.Write("<script>alert('Código ya generado')</script>");
                     return;
                 }
-            }
 
-            Session["Ticket"] = new Ticket();
-            ticket = new Ticket(((Ticket)Session["Ticket"]).IdTicket, txtVCodigo.Text, DateTime.Now, Convert.ToInt32(Session["idUsu"]));
-            LNyAD.AddTicket(ticket);
-            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow", "window.open('TicketsDetalle.aspx','Tickets Detalle','menubar=1,resizable=1,width=900,height=600');", true);
-
-            
-
+                Session["Ticket"] = new Ticket();
+                ticket = new Ticket(((Ticket)Session["Ticket"]).IdTicket, txtVCodigo.Text, DateTime.Now, Convert.ToInt32(Session["idUsu"]));
+                LNyAD.AddTicket(ticket);
+            }                   
 
         }
 
@@ -104,5 +99,17 @@ namespace CinesAquiMismoWeb
             }
         }
 
+        protected void CustomValidator3_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+
+            if(Convert.ToDateTime(txtFecha.Text) > Convert.ToDateTime(DateTime.Now.ToString("dd-MM-yyyy"))){
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+
+        }
     }
 }

@@ -50,7 +50,7 @@ namespace CinesAquiMismoWeb
                     }
                 }
             }
-            else
+            else if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                 Response.Redirect("Login.aspx");

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CinesDetalle.aspx.cs" Theme="TemaDetalle" Inherits="CinesAquiMismoWeb.CinesDetalle" MasterPageFile="~/PaginaMaestraDetalle.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CinesDetalle.aspx.cs" Theme="TemaDetalle" Inherits="CinesAquiMismoWeb.CinesDetalle" MasterPageFile="~/PaginaMaestraDetalle.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -12,13 +12,26 @@
                 }
                 catch(e) {
                 }
-                window.close();
               }
             }
             window.onunload=function() {
               reloadOpener();
             }
-        }
+         }
+
+         function validarZona() {
+             if (ddlZonasD.SelectedIndex > 0)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }
+         }
+
+
+
     </script>
 </asp:Content>
 
@@ -40,7 +53,7 @@
                 <asp:ListItem>Oeste</asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlZonasD" ErrorMessage="Falta Zona." ForeColor="Red">*</asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Debe elegir una Zona" ForeColor="Red" OnServerValidate="CustomValidatorCBCine_ServerValidate" ControlToValidate="ddlZonasD"></asp:CustomValidator>
+            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Debe elegir una Zona" ForeColor="Red" OnServerValidate="CustomValidatorCBCine_ServerValidate" ControlToValidate="ddlZonasD" ClientValidationFunction="validarZona"></asp:CustomValidator>
         </p>
         <asp:Button ID="btnAceptar" runat="server" OnClick="btnAceptar_Click" OnClientClick="pop()" Text="Aceptar" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

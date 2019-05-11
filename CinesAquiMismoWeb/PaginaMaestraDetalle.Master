@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="PaginaMaestraDetalle.master.cs" Inherits="CinesAquiMismoWeb.PaginaMaestraDetalle" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PaginaMaestraDetalle.master.cs" Inherits="CinesAquiMismoWeb.PaginaMaestraDetalle" %>
 
 <!DOCTYPE html>
 

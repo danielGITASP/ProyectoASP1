@@ -38,7 +38,7 @@ namespace CinesAquiMismoWeb
 
                 }
             }
-            else
+            else if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                 Response.Redirect("Login.aspx");
@@ -59,10 +59,10 @@ namespace CinesAquiMismoWeb
 
         private void CargarControles()
         {
-            txtNombre.Text = pais.NombrePais;
+            ddlNombrePais.SelectedValue = pais.NombrePais;
             txtNumVisitas.Text = pais.NumVisitas.ToString();
             ddlPeli.SelectedValue = pais.PeliculaId.ToString();
-            txtValoracion.Text = pais.Valoracion.ToString();           
+            ddlValor.SelectedValue = pais.Valoracion.ToString();           
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace CinesAquiMismoWeb
             if (!Page.IsValid)
                 return;
 
-            pais = new Pais(((Pais)Session["Pais"]).IdPais, txtNombre.Text, Convert.ToInt32(txtNumVisitas.Text), Convert.ToInt32(ddlPeli.SelectedValue), Convert.ToInt32(txtValoracion.Text));
+            pais = new Pais(((Pais)Session["Pais"]).IdPais, ddlNombrePais.SelectedValue, Convert.ToInt32(txtNumVisitas.Text), Convert.ToInt32(ddlPeli.SelectedValue), Convert.ToInt32(ddlValor.SelectedValue));
 
             //Pais existente (nombre, visitas, pelicula, valoracion)
             bool Repetido = false;
@@ -98,7 +98,7 @@ namespace CinesAquiMismoWeb
                     peliculaId = paisesTabla[i].PeliculaId;
                     valoracion = paisesTabla[i].Valoracion;
 
-                    if((txtNombre.Text == nombre) && (Convert.ToInt32(txtNumVisitas.Text) == numVisitas) && (Convert.ToInt32(ddlPeli.SelectedValue) == peliculaId) && (Convert.ToInt32(txtValoracion.Text) == valoracion))
+                    if((ddlNombrePais.SelectedValue == nombre) && (Convert.ToInt32(txtNumVisitas.Text) == numVisitas) && (Convert.ToInt32(ddlPeli.SelectedValue) == peliculaId) && (Convert.ToInt32(ddlValor.SelectedValue) == valoracion))
                     {
                         Repetido = true;
                     }
@@ -114,14 +114,14 @@ namespace CinesAquiMismoWeb
                     peliculaId = paisesTabla[i].PeliculaId;
                     valoracion = paisesTabla[i].Valoracion;
 
-                    if(txtNombre.Text == nombreA && Convert.ToInt32(txtNumVisitas.Text) == numVisitasA && Convert.ToInt32(ddlPeli.SelectedValue) == peliculaIdA && Convert.ToInt32(txtValoracion.Text) == valoracionA)
+                    if(ddlNombrePais.SelectedValue == nombreA && Convert.ToInt32(txtNumVisitas.Text) == numVisitasA && Convert.ToInt32(ddlPeli.SelectedValue) == peliculaIdA && Convert.ToInt32(ddlValor.SelectedValue) == valoracionA)
                     {
                         i++;
                         Repetido = false;
                     }
                     else
                     {
-                        if ((txtNombre.Text == nombre) && (Convert.ToInt32(txtNumVisitas.Text) == numVisitas) && (Convert.ToInt32(ddlPeli.SelectedValue) == peliculaId) && (Convert.ToInt32(txtValoracion.Text) == valoracion))
+                        if ((ddlNombrePais.SelectedValue == nombre) && (Convert.ToInt32(txtNumVisitas.Text) == numVisitas) && (Convert.ToInt32(ddlPeli.SelectedValue) == peliculaId) && (Convert.ToInt32(ddlValor.SelectedValue) == valoracion))
                         {
                             Repetido = true;
                         }

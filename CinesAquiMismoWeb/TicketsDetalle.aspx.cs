@@ -38,7 +38,7 @@ namespace CinesAquiMismoWeb
                     }
                 }
             }
-            else
+            else if (!Convert.ToBoolean(Session["logeo"]) || Convert.ToBoolean(Session["logeoU"]))
             {
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                 Response.Redirect("Login.aspx");
@@ -60,9 +60,7 @@ namespace CinesAquiMismoWeb
         {        
             txtCodigo.Text = ticket.Codigo;
             ddlUsuario.SelectedValue = ticket.UsuarioId.ToString();
-            fechaTicket.SelectedDate = ticket.Fecha;
-
-            
+            fechaTicket.SelectedDate = ticket.Fecha;           
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
