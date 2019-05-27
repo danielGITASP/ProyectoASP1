@@ -78,7 +78,7 @@
                 <asp:ListItem>SinRegistro</asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlAccesoD" ErrorMessage="Acceso" ForeColor="Red">*</asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="ddlAccesoD" ErrorMessage="Debe elegir un acceso." ForeColor="Red" OnServerValidate="CustomValidatorCBAcceso_ServerValidate" ClientValidationFunction="validarPermiso"></asp:CustomValidator>
+            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="ddlAccesoD" ErrorMessage="Debe elegir un acceso." ForeColor="Red" OnServerValidate="CustomValidatorCBAcceso_ServerValidate" ClientValidationFunction="validarPermiso" ValidateEmptyText="True"></asp:CustomValidator>
         </p>
         <p>
             <asp:Label ID="Label6" runat="server" Text="Movil:"></asp:Label>

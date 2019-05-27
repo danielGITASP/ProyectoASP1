@@ -59,7 +59,7 @@
             <asp:DropDownList ID="ddlCinesDetalle" runat="server" AutoPostBack="True">
             </asp:DropDownList>
             <asp:CustomValidator ID="CustomDddlCine" runat="server" ControlToValidate="ddlCinesDetalle"  
-                 ErrorMessage="Debe elegir un cine." ForeColor="Red" OnServerValidate="CustomValidatorDdlCine_ServerValidate" ClientValidationFunction="validarCine"></asp:CustomValidator><%--ClientValidationFunction="validarCine"--%>
+                 ErrorMessage="Debe elegir un cine." ForeColor="Red" OnServerValidate="CustomValidatorDdlCine_ServerValidate" ClientValidationFunction="validarCine" ValidateEmptyText="True"></asp:CustomValidator><%--ClientValidationFunction="validarCine"--%>
         </p>
         <asp:Button ID="btnAceptar" runat="server" OnClick="btnAceptar_Click" OnClientClick="pop()"  Text="Aceptar"  />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

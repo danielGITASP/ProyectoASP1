@@ -138,5 +138,10 @@ namespace CinesAquiMismoWeb
         {
             CargaTickets();
         }
+
+        protected void btnPaises_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

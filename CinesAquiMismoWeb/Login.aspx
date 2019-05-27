@@ -103,7 +103,7 @@
             <asp:Label ID="Label15" runat="server" Text="Móvil:" Visible="False"></asp:Label>
             <asp:TextBox ID="txtMovil" runat="server" ValidationGroup="registro" Visible="False"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtMovil" ErrorMessage="Falta el Móvil." ForeColor="Red" ValidationGroup="registro">*</asp:RequiredFieldValidator>
-            <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtMovil" ErrorMessage="Debe empezar por 6 o 7." ForeColor="Red" MaximumValue="799999999" MinimumValue="600000000" ValidationGroup="registro"></asp:RangeValidator>
+            <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtMovil" ErrorMessage="Debe empezar por 6 o 7 y tener 9 cifras." ForeColor="Red" MaximumValue="799999999" MinimumValue="600000000" ValidationGroup="registro" Type="Integer"></asp:RangeValidator>
         </p>
         <p class="auto-style2">
             &nbsp;&nbsp;&nbsp;&nbsp;

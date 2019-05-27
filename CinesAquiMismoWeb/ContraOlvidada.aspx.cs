@@ -20,37 +20,28 @@ namespace CinesAquiMismoWeb
         static UsuariosTableAdapter usuariosAdapter = new UsuariosTableAdapter();
         static DataSet1.UsuariosDataTable usuariosTabla = new DataSet1.UsuariosDataTable();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!Convert.ToBoolean(Session["logeo"]) || !Convert.ToBoolean(Session["logeoU"]))
-            {
-                Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
-                Response.Redirect("Login.aspx");
-            }
-
-        }
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Host = "smtp.gmail.com";
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+
+
             MailMessage mm = new MailMessage("daniel-boom@hotmail.es", txtEmail.Text);
             mm.Subject = "Tu contraseña";
             mm.Body = "Halo halo";
             mm.IsBodyHtml = true;
             mm.BodyEncoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
 
-
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Host = "smtp.gmail.com";
-            smtp.EnableSsl = true;
-
-            NetworkCredential nc = new NetworkCredential();
+            NetworkCredential nc = new NetworkCredential("danielbum96@gmail.com", "notengoniidea");
             nc.UserName = "danielbum96@gmail.com";
             nc.Password = "notengoniidea";
 
-            smtp.UseDefaultCredentials = true;
             smtp.Credentials = nc;
             smtp.Port = 587;
-          
+
             usuariosTabla = usuariosAdapter.GetData();
             string emailT = txtEmail.Text;
             string emailU;
@@ -60,7 +51,7 @@ namespace CinesAquiMismoWeb
             {
                 emailU = usuariosTabla[i].Email;
 
-                if(emailT == emailU)
+                if (emailT == emailU)
                 {
                     mandado = true;
                     mm.Body = "Tu contraseña es " + usuariosTabla[i].Password;
@@ -77,6 +68,7 @@ namespace CinesAquiMismoWeb
                 lblCorreo.Text = "No se encuentra ese correo";
                 lblCorreo.Visible = true;
             }
+
 
 
         }

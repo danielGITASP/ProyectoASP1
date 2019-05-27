@@ -21,7 +21,7 @@
             <asp:Label ID="Label2" runat="server" Text="Antigua Contraseña:" ForeColor="Yellow"></asp:Label>
             <asp:TextBox ID="txtContraA" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtContraA" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtContraA" ErrorMessage="Esta no es la contraseña antigua." ForeColor="Red" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
+            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtContraA" ErrorMessage="Esta no es la contraseña antigua." ForeColor="Red" OnServerValidate="CustomValidator1_ServerValidate" ValidateEmptyText="True"></asp:CustomValidator>
             <br />
             <asp:Label ID="Label3" runat="server" Text="Nueva Contraseña:" ForeColor="Yellow"></asp:Label>
             <asp:TextBox ID="txtContraN" runat="server"></asp:TextBox>

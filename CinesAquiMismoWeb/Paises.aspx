@@ -3,6 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            margin-top: 0px;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -33,17 +38,18 @@
             <SortedDescendingCellStyle BackColor="#F1E5CE" />
             <SortedDescendingHeaderStyle BackColor="#93451F" />
         </asp:GridView>
-        <asp:Button ID="btnAñadir" runat="server" OnClick="btnAñadir_Click" Text="Añadir" />
+        <br />
+        <asp:Button ID="btnAñadir" runat="server" OnClick="btnAñadir_Click" Text="Añadir" BorderColor="#FF5050" ForeColor="#CC0066" Height="30px" Width="88px" />
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnPeliculas" runat="server" PostBackUrl="~/Peliculas.aspx" Text="Peliculas" />
+        <asp:Button ID="btnPeliculas" runat="server" PostBackUrl="~/Peliculas.aspx" Text="Peliculas" BorderColor="#FF5050" CssClass="auto-style1" ForeColor="#CC0066" Height="30px" Width="88px" />
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnCines" runat="server" PostBackUrl="~/Cines.aspx" Text="Cines" />
+        <asp:Button ID="btnCines" runat="server" PostBackUrl="~/Cines.aspx" Text="Cines" BorderColor="#FF5050" ForeColor="#CC0066" Height="30px" Width="83px" />
 &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnUsuarios" runat="server" PostBackUrl="~/Usuarios.aspx" Text="Usuarios" />
+        <asp:Button ID="btnUsuarios" runat="server" PostBackUrl="~/Usuarios.aspx" Text="Usuarios" BorderColor="#FF5050" ForeColor="#CC0066" Height="30px" Width="95px" />
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnTicket" runat="server" PostBackUrl="~/Tickets.aspx" Text="Tickets" />
+        <asp:Button ID="btnTicket" runat="server" PostBackUrl="~/Tickets.aspx" Text="Tickets" BorderColor="#FF5050" ForeColor="#FF5050" Height="30px" Width="78px" />
 &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnVolver" runat="server" PostBackUrl="~/Peliculas.aspx" Text="Volver" />
+        <asp:Button ID="btnVolver" runat="server" PostBackUrl="~/Peliculas.aspx" Text="Volver" BorderColor="#FF5050" ForeColor="#FF5050" Height="30px" />
         
         <br />
         <br />

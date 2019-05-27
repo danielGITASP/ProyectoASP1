@@ -39,15 +39,16 @@
             <SortedDescendingCellStyle BackColor="#E1DB9C" />
             <SortedDescendingHeaderStyle BackColor="#C2A47B" />
         </asp:GridView>
-        <asp:Button ID="btnPeliculas" runat="server" PostBackUrl="~/Peliculas.aspx" Text="Peliculas" />
+        <br />
+        <asp:Button ID="btnPeliculas" runat="server" PostBackUrl="~/Peliculas.aspx" Text="Peliculas" BorderColor="#663300" ForeColor="#996600" Height="30px" />
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnCines" runat="server" PostBackUrl="~/Cines.aspx" Text="Cines" />
+        <asp:Button ID="btnCines" runat="server" PostBackUrl="~/Cines.aspx" Text="Cines" BorderColor="#663300" ForeColor="#996600" Height="30px" />
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnUsuarios" runat="server" PostBackUrl="~/Usuarios.aspx" Text="Usuarios" />
+        <asp:Button ID="btnUsuarios" runat="server" PostBackUrl="~/Usuarios.aspx" Text="Usuarios" BorderColor="#663300" ForeColor="#996600" Height="30px" />
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnPaises" runat="server" PostBackUrl="~/Paises.aspx" Text="Paises" />
+        <asp:Button ID="btnPaises" runat="server" PostBackUrl="~/Paises.aspx" Text="Paises" BorderColor="#663300" ForeColor="#996600" Height="30px"  />
 &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnVolver" runat="server" PostBackUrl="~/Peliculas.aspx" Text="Volver" />
+        <asp:Button ID="btnVolver" runat="server" PostBackUrl="~/Peliculas.aspx" Text="Volver" BorderColor="#663300" ForeColor="#996600" Height="30px" />
         
         <br />
         <asp:Label ID="lbConfirmar" runat="server" Text="Label" Visible="False"></asp:Label>

@@ -47,11 +47,11 @@ namespace CinesAquiMismoWeb
             dgvUsuarios.DataSource = LNyAD.TablaUsuarios(idAcceso, acceso);
             dgvUsuarios.DataBind();
 
-            //foreach (GridViewRow fila in dgvUsuarios.Rows)
-            //{
-            //    dgvUsuarios.HeaderRow.Cells[1].Visible = false;
-            //    fila.Cells[1].Visible = false;
-            //}
+            foreach (GridViewRow fila in dgvUsuarios.Rows)
+            {
+                dgvUsuarios.HeaderRow.Cells[1].Visible = false;
+                fila.Cells[1].Visible = false;
+            }
         }
 
 

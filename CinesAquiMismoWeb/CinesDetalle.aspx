@@ -53,7 +53,7 @@
                 <asp:ListItem>Oeste</asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlZonasD" ErrorMessage="Falta Zona." ForeColor="Red">*</asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Debe elegir una Zona" ForeColor="Red" OnServerValidate="CustomValidatorCBCine_ServerValidate" ControlToValidate="ddlZonasD" ClientValidationFunction="validarZona"></asp:CustomValidator>
+            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Debe elegir una Zona" ForeColor="Red" OnServerValidate="CustomValidatorCBCine_ServerValidate" ControlToValidate="ddlZonasD" ClientValidationFunction="validarZona" ValidateEmptyText="True"></asp:CustomValidator>
         </p>
         <asp:Button ID="btnAceptar" runat="server" OnClick="btnAceptar_Click" OnClientClick="pop()" Text="Aceptar" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

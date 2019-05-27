@@ -20,6 +20,7 @@ namespace CinesAquiMismoWeb
             set { ticket = value; }
         }
 
+        public bool compra = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -27,6 +28,7 @@ namespace CinesAquiMismoWeb
                 if (Convert.ToBoolean(Session["logeoU"]))
                 {
                     ddlTipoTarjeta.Items.Insert(0, "Elige un tipo de tarjeta");
+                    Session["compra"] = false;
                 }
                 else if (!Convert.ToBoolean(Session["logeoU"]) || Convert.ToBoolean(Session["logeo"]))
                 {
@@ -40,33 +42,36 @@ namespace CinesAquiMismoWeb
 
         protected void btnGenerar_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            if(!Convert.ToBoolean(Session["compra"]))
             {
-                if (txtVCodigo.Text == "")
+                if (Page.IsValid)
                 {
-                    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                    var stringChars = new char[8];
-                    var random = new Random();
-
-                    for (int i = 0; i < stringChars.Length; i++)
+                    for (int i = 0; i < Convert.ToInt32(txtNumT.Text); i++)
                     {
-                        stringChars[i] = chars[random.Next(chars.Length)];
+                        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                        var stringChars = new char[8];
+                        var random = new Random();
+
+                        for (int j = 0; j < stringChars.Length; j++)
+                        {
+                            stringChars[j] = chars[random.Next(chars.Length)];
+                        }
+
+                        var finalString = new String(stringChars);
+                        txtVCodigo.Text += finalString + " | ";
+
+                        Session["Ticket"] = new Ticket();
+                        ticket = new Ticket(((Ticket)Session["Ticket"]).IdTicket, finalString, DateTime.Now, Convert.ToInt32(Session["idUsu"]));
+                        LNyAD.AddTicket(ticket);
                     }
-
-                    var finalString = new String(stringChars);
-                    txtVCodigo.Text = finalString;
+                    Session["compra"] = true;
                 }
-                else
-                {
-                    Response.Write("<script>alert('Código ya generado')</script>");
-                    return;
-                }
-
-                Session["Ticket"] = new Ticket();
-                ticket = new Ticket(((Ticket)Session["Ticket"]).IdTicket, txtVCodigo.Text, DateTime.Now, Convert.ToInt32(Session["idUsu"]));
-                LNyAD.AddTicket(ticket);
-            }                   
-
+            }
+            else
+            {
+                Response.Write("<script>alert('CODIGO YA GENERADO')</script>");
+            }
+                          
         }
 
 
@@ -101,8 +106,12 @@ namespace CinesAquiMismoWeb
 
         protected void CustomValidator3_ServerValidate(object source, ServerValidateEventArgs args)
         {
-
-            if(Convert.ToDateTime(txtFecha.Text) > Convert.ToDateTime(DateTime.Now.ToString("dd-MM-yyyy"))){
+            DateTime now = DateTime.Now;
+            if(txtFecha.Text == String.Empty || txtFecha.Text == "dd/mm/aa")
+            {
+                args.IsValid = false;
+            }
+            else if (Convert.ToDateTime(txtFecha.Text) > now){
                 args.IsValid = true;
             }
             else

@@ -29,6 +29,7 @@
         }
 
 
+
     </script>
     </head>
 <body>
@@ -38,8 +39,8 @@
        <asp:Label ID="Label1" runat="server" Text="Label"> Nº de Tarjeta:</asp:Label>
         <asp:TextBox ID="txtNTarjeta" runat="server" MaskType="None" Mask="0000-0000-0000-0000" AutoPostBack="True" MaxLength="16" TextMode="Number" Width="151px"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNTarjeta" ErrorMessage="*" ForeColor="Red" BackColor="White"></asp:RequiredFieldValidator>
-&nbsp;&nbsp;<asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtNTarjeta" ErrorMessage="Debe ser un número de 16 dígitos." ForeColor="Red" OnServerValidate="CustomValidatorTarjeta_ServerValidate" BackColor="White"></asp:CustomValidator>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="Label5" runat="server" Text="Label">Tu código:</asp:Label><asp:TextBox ID="txtVCodigo" runat="server" Height="16px" ReadOnly="True" Width="159px"></asp:TextBox>
+&nbsp;&nbsp;<asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtNTarjeta" ErrorMessage="Debe ser un número de 16 dígitos." ForeColor="Red" OnServerValidate="CustomValidatorTarjeta_ServerValidate" BackColor="White" ValidateEmptyText="True"></asp:CustomValidator>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="Label5" runat="server" Text="Label">Tu código:</asp:Label><asp:TextBox ID="txtVCodigo" runat="server" Height="20px" ReadOnly="True" Width="557px"></asp:TextBox>
     
     </div>
         <p>
@@ -48,7 +49,7 @@
                 <asp:ListItem>MasterCard</asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlTipoTarjeta" ErrorMessage="*" ForeColor="Red" BackColor="White"></asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="CustomValidator2" runat="server" BackColor="White" ControlToValidate="ddlTipoTarjeta" ErrorMessage="Debe elegir un tipo de tarjeta." ForeColor="Red" OnServerValidate="CustomValidatorDdlTipo_ServerValidate" ClientValidationFunction="validarTarjeta" Display="Dynamic"></asp:CustomValidator>
+            <asp:CustomValidator ID="CustomValidator2" runat="server" BackColor="White" ControlToValidate="ddlTipoTarjeta" ErrorMessage="Debe elegir un tipo de tarjeta." ForeColor="Red" OnServerValidate="CustomValidatorDdlTipo_ServerValidate" ClientValidationFunction="validarTarjeta" Display="Dynamic" ValidateEmptyText="True"></asp:CustomValidator>
         </p>
         <p>
             <asp:Label ID="Label3" runat="server" Text="Label"> Código de Seguridad:</asp:Label><asp:TextBox ID="txtCodigo" runat="server" MaxLength="3"></asp:TextBox>
@@ -58,7 +59,12 @@
         <p>
             <asp:Label ID="Label4" runat="server" Text="Label">Fecha de Caducidad:</asp:Label> <asp:TextBox ID="txtFecha" runat="server" TextMode="Date"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtFecha" ErrorMessage="*" ForeColor="Red" BackColor="White"></asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="CustomValidator3" runat="server" BackColor="White" ErrorMessage="La fecha no puede ser anterior o igual al dia de hoy." ForeColor="Red" OnServerValidate="CustomValidator3_ServerValidate" ClientValidationFunction="validarFecha" ControlToValidate="txtFecha" Display="Dynamic"></asp:CustomValidator>
+            <asp:CustomValidator ID="CustomValidator3" runat="server" BackColor="White" ErrorMessage="La fecha no puede ser anterior o igual al dia de hoy." ForeColor="Red" OnServerValidate="CustomValidator3_ServerValidate" ClientValidationFunction="validarFecha" ControlToValidate="txtFecha" Display="Dynamic" ValidateEmptyText="True"></asp:CustomValidator>
+        </p>
+        <p>
+            <asp:Label ID="Label6" runat="server" Text="Nº de Tickets: "></asp:Label>
+            <asp:TextBox ID="txtNumT" runat="server" TextMode="Number">1</asp:TextBox>
+            <asp:RangeValidator ID="RangeValidator2" runat="server" BackColor="White" ControlToValidate="txtNumT" ErrorMessage="Debe ser entre 1 y 5." ForeColor="Red" MaximumValue="5" MinimumValue="1"></asp:RangeValidator>
         </p>
         <asp:Button ID="btnGenerar" runat="server" OnClick="btnGenerar_Click" Text="Generar" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

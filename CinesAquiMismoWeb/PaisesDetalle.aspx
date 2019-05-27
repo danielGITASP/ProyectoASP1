@@ -51,6 +51,7 @@
         <asp:Label ID="Label2" runat="server" Text="Número de visitas:"></asp:Label>
         <asp:TextBox ID="txtNumVisitas" runat="server" TextMode="Number"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNumVisitas" ErrorMessage="Falta el Numero de Visitas de la Pelicula." ForeColor="Red">*</asp:RequiredFieldValidator>
+        <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtNumVisitas" ErrorMessage="Máx: 9999999" ForeColor="Red" MaximumValue="9999999" MinimumValue="0" Type="Integer"></asp:RangeValidator>
         <br />
         <asp:Label ID="Label3" runat="server" Text="Valoración:"></asp:Label>
         <asp:DropDownList ID="ddlValor" runat="server">

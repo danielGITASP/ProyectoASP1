@@ -22,7 +22,7 @@ no se permite que haya varios SkinId por tipo de control en el mismo tema.
     Font-Bold="True" 
     Font-Size="Medium" 
     Height="35px" 
-    Width="200px">
+    Width="557px">
 </asp:TextBox>
 
 <asp:DropDownList runat="server" Font-Bold="True" Font-Overline="False" Font-Size="Medium"/>
