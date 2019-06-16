@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicaNegocioyADatos.Entidades
+namespace CinesAquiMismoWeb
 {
     public class Usuario
     {
@@ -48,7 +48,7 @@ namespace LogicaNegocioyADatos.Entidades
 
         public Usuario(DataSet1.UsuariosRow regUsuario)
         {
-            this.IdUsuario = regUsuario.IdUsuario;
+            this.IdUsuario = regUsuario.idUsuario;
             this.Nombre = regUsuario.Nombre;
             this.Password = regUsuario.Password;
             this.Alias = regUsuario.Alias;

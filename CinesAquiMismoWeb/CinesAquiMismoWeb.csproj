@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -25,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,7 +74,9 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DataVisualization.Design" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -91,14 +95,21 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\CinesT.accdb" />
     <Content Include="Cines.aspx" />
     <Content Include="CinesDetalle.aspx" />
     <Content Include="ComprarTicket.aspx" />
     <Content Include="ContraCambio.aspx" />
+    <Content Include="ContraCambioLink.aspx" />
     <Content Include="ContraOlvidada.aspx" />
-    <Content Include="estilos.css" />
+    <Content Include="Estilos\Cartelera.css" />
+    <Content Include="Estilos\Cines.css" />
+    <Content Include="Estilos\CompraTicket.css" />
+    <Content Include="Estilos\Paises.css" />
+    <Content Include="Estilos\Peliculas.css" />
+    <Content Include="Estilos\Tickets.css" />
+    <Content Include="Estilos\Usuarios.css" />
     <Content Include="Grafico.aspx" />
+    <Content Include="img\56586_91628_1.jpg" />
     <Content Include="img\cineadmin.jpg" />
     <Content Include="img\contra.jpg" />
     <Content Include="img\logincines.jpg" />
@@ -120,6 +131,23 @@
     <Content Include="App_Themes\TemaU\ControlesU.skin" />
     <Content Include="App_Themes\TemaPU\VistaPU.skin" />
     <Content Include="App_Themes\TemaDetalle\Detalle.skin" />
+    <Content Include="app.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\cinesaquimismoasp - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\cinesaquimismoasp - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\cinesaquimismoazure - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -134,6 +162,7 @@
     <Content Include="Peliculas.aspx" />
     <Content Include="PeliculasDetalle.aspx" />
     <Content Include="PeliculasUsuario.aspx" />
+    <Content Include="Site.css" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -184,6 +213,13 @@
     <Compile Include="ContraCambio.aspx.designer.cs">
       <DependentUpon>ContraCambio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ContraCambioLink.aspx.cs">
+      <DependentUpon>ContraCambioLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContraCambioLink.aspx.designer.cs">
+      <DependentUpon>ContraCambioLink.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ContraOlvidada.aspx.cs">
       <DependentUpon>ContraOlvidada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -191,6 +227,19 @@
     <Compile Include="ContraOlvidada.aspx.designer.cs">
       <DependentUpon>ContraOlvidada.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Cine.cs" />
+    <Compile Include="Entidades\Pais.cs" />
+    <Compile Include="Entidades\Pelicula.cs" />
+    <Compile Include="Entidades\Ticket.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Grafico.aspx.cs">
       <DependentUpon>Grafico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -198,6 +247,7 @@
     <Compile Include="Grafico.aspx.designer.cs">
       <DependentUpon>Grafico.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LNyAD.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -286,17 +336,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogicaNegocioyADatos\LogicaNegocioyADatos.csproj">
-      <Project>{7f346460-bc6a-45c4-8735-0c212a04e41d}</Project>
-      <Name>LogicaNegocioyADatos</Name>
-    </ProjectReference>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

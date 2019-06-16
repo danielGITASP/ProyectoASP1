@@ -1,5 +1,4 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
+﻿using CinesAquiMismoWeb.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,30 +60,27 @@ namespace CinesAquiMismoWeb
             String nombre;
             String contra;
 
-           
-
             for (int i = 0; i < usuariosTabla.Rows.Count; i++)
             {
-                id = usuariosTabla[i].IdUsuario;
+                id = usuariosTabla[i].idUsuario;
                 nombre = usuariosTabla[i].Nombre.ToString();
                 contra = usuariosTabla[i].Password.ToString();
 
                 if (txtContraA.Text == contra && txtU.Text == nombre)
                 {
-                    DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByIdUsuario(id);
+                    DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByidUsuario(id);
                     regUsuario.Password = txtContraN.Text;
 
-                    Label1.Text = usuariosTabla[i].Password;
                     usuariosTabla[i].Password = txtContraN.Text;
-                    Label2.Text = usuariosTabla[i].Password;
 
                     usuariosAdapter.Update(regUsuario);
                     usuariosTabla.AcceptChanges();
 
+                    labelMensaje.ForeColor = System.Drawing.Color.Green;
+                    labelMensaje.Text = "Se ha cambiado la contraseña";
+                    labelMensaje.Visible = true;
                 }
-
-            }
-            
+            }            
         }
 
 

@@ -1,8 +1,8 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
+﻿using CinesAquiMismoWeb.DataSet1TableAdapters;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,11 +13,18 @@ namespace CinesAquiMismoWeb
     public partial class Login : System.Web.UI.Page
     {
 
+        //static string connectionString2 = "Server=ftp-eu.site4now.net; Database=cinesaquimismo; Uid=root; Pwd=Akihinata123;";
+        //static string connectionString3 = "server=localhost;user id=ftp-eu.site4now.net;password=Akihinata123;persistsecurityinfo=True;database=cinesaquimismo";
+        static SqlConnection cn = new SqlConnection("Data Source=servidorcines.database.windows.net;Initial Catalog=cinesaquimismo;Persist Security Info=True;User ID=daniel@servidorcines;Password=Akihinata1");
+
         static UsuariosTableAdapter usuariosAdapter = new UsuariosTableAdapter();
         static DataSet1.UsuariosDataTable usuariosTabla = new DataSet1.UsuariosDataTable();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            cn.Open();
+            
+
             Session["logeo"] = false;
             Session["logeoU"] = false;
             Label6.Text = DateTime.Now.ToString();
@@ -30,6 +37,7 @@ namespace CinesAquiMismoWeb
                     txtPass.Attributes["value"] = Request.Cookies["Contra"].Value;
                 }
             }
+            cn.Close();
         }
 
         protected void btnMostrarR_Click(object sender, EventArgs e)
@@ -53,8 +61,12 @@ namespace CinesAquiMismoWeb
         }
 
         protected void btnAcceder_Click(object sender, EventArgs e)
-        {           
+        {
+            //string connectionString = @"Data Source=localhost; Database=cinesaquimismo; User ID=root; Password=Akihinata123";
+                       
             usuariosTabla = usuariosAdapter.GetData();
+           
+
             bool Log = false;
             String usuario;
             String login;
@@ -78,23 +90,24 @@ namespace CinesAquiMismoWeb
 
             for (int i = 0; i < usuariosTabla.Rows.Count; i++)
             {
-                usuario = usuariosTabla[i].Nombre.ToString();
-                contra = usuariosTabla[i].Password.ToString();
-                login = usuariosTabla[i].Login.ToString();
+                usuario = usuariosTabla[i].Nombre;
+                contra = usuariosTabla[i].Password;
+                login = usuariosTabla[i].Login;
                 
 
-                if ((txtUsu.Text.Trim() == usuario && txtPass.Text == contra)
-                    || (txtUsu.Text.Trim() == login && txtPass.Text == contra))
+                if ((txtUsu.Text.Trim() == usuario && txtPass.Text == contra) || (txtUsu.Text.Trim() == login && txtPass.Text == contra))
                 {
                     Log = true;
                     acceso = usuariosTabla[i].TipoAcceso;
-                    Session["idUsu"] = usuariosTabla[i].IdUsuario;
+                    Session["idUsu"] = usuariosTabla[i].idUsuario;
+
                 }
 
             }
 
             if (Log == false)
             {
+                
                 Label12.Visible = true;
                 return;
             }

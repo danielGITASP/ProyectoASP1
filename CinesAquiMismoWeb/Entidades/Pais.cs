@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicaNegocioyADatos.Entidades
+namespace CinesAquiMismoWeb
 {
     public class Pais
     {
@@ -40,7 +40,7 @@ namespace LogicaNegocioyADatos.Entidades
 
         public Pais(DataSet1.PaisesRow regPais)
         {
-            this.IdPais = regPais.IdPais;
+            this.IdPais = regPais.idPais;
             this.NombrePais = regPais.NombrePais;
             this.NumVisitas = regPais.NumVisitas;
             this.PeliculaId = regPais.PeliculaId;

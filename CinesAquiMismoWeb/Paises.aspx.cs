@@ -1,8 +1,7 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
+﻿using CinesAquiMismoWeb.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -131,6 +130,12 @@ namespace CinesAquiMismoWeb
             }
         }
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
+
         protected void dgvPaises_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idPais = Convert.ToInt32(dgvPaises.SelectedRow.Cells[1].Text);
@@ -140,6 +145,53 @@ namespace CinesAquiMismoWeb
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow", "window.open('PaisesDetalle.aspx','Paises Detalle','menubar=1,resizable=1,width=900,height=600');", true);
             dgvPaises.SelectedIndex = -1;
+        }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+
+            Response.AddHeader("content-disposition", "attachment;filename=Paises.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/ms-excel ";
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            dgvPaises.AllowPaging = false;
+            CargaPaises();
+            
+            dgvPaises.RenderControl(hw);
+
+            Response.Output.Write(sw.ToString());
+
+            Response.Flush();
+            Response.End();
+        }
+
+        protected void btnPDF_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.AddHeader("content-disposition", "attachment;filename=Paises.doc");
+            Response.ContentType = "application/ms-word ";
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            dgvPaises.AllowPaging = false;
+
+            CargaPaises();
+
+            
+            dgvPaises.RenderControl(hw);
+
+            Response.Output.Write(sw.ToString());
+
+            Response.Flush();
+            Response.End();
         }
     }
 }

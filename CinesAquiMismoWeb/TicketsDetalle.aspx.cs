@@ -1,6 +1,4 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
+﻿using CinesAquiMismoWeb.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

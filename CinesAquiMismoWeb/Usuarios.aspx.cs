@@ -1,9 +1,8 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
+﻿using CinesAquiMismoWeb.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,7 +17,7 @@ namespace CinesAquiMismoWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (Convert.ToBoolean(Session["logeo"]))
             {
                 if (!Page.IsPostBack)
@@ -32,6 +31,7 @@ namespace CinesAquiMismoWeb
                 Response.Redirect("Login.aspx");
             }
         }
+
         protected void ddlTipoAccesos_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargaAccesos();
@@ -51,6 +51,13 @@ namespace CinesAquiMismoWeb
             {
                 dgvUsuarios.HeaderRow.Cells[1].Visible = false;
                 fila.Cells[1].Visible = false;
+
+                dgvUsuarios.HeaderRow.Cells[3].Visible = false;
+                fila.Cells[3].Visible = false;
+
+                dgvUsuarios.HeaderRow.Cells[6].Visible = false;
+                fila.Cells[6].Visible = false;
+
             }
         }
 
@@ -141,5 +148,56 @@ namespace CinesAquiMismoWeb
         }
 
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+
+            Response.AddHeader("content-disposition", "attachment;filename=Usuarios.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/ms-excel ";
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            dgvUsuarios.AllowPaging = false;
+            CargaAccesos();
+            
+            dgvUsuarios.RenderControl(hw);
+
+            Response.Output.Write(sw.ToString());
+
+            Response.Flush();
+            Response.End();
+        }
+
+        protected void btnPDF_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+
+            Response.AddHeader("content-disposition", "attachment;filename=Usuarios.doc");
+            Response.Charset = "";
+            Response.ContentType = "application/ms-word ";
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            dgvUsuarios.AllowPaging = false;
+            CargaAccesos();
+            
+            dgvUsuarios.RenderControl(hw);
+
+            Response.Output.Write(sw.ToString());
+
+            Response.Flush();
+            Response.End();
+        }
     }
 }

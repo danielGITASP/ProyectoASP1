@@ -1,12 +1,12 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.DataVisualization;
+using CinesAquiMismoWeb.DataSet1TableAdapters;
 
 namespace CinesAquiMismoWeb
 {
@@ -139,9 +139,61 @@ namespace CinesAquiMismoWeb
             CargaTickets();
         }
 
-        protected void btnPaises_Click(object sender, EventArgs e)
-        {
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
         }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+
+            Response.AddHeader("content-disposition", "attachment;filename=Tickets.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/ms-excel ";
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            dgvTickets.AllowPaging = false;
+
+            CargaTickets();
+
+
+            dgvTickets.RenderControl(hw);
+
+            Response.Output.Write(sw.ToString());
+
+            Response.Flush();
+            Response.End();
+        }
+
+        protected void btnPDF_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.AddHeader("content-disposition", "attachment;filename=Tickets.doc");
+            Response.ContentType = "application/ms-word ";
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            dgvTickets.AllowPaging = false;
+
+            CargaTickets();
+
+            dgvTickets.RenderControl(hw);
+
+            Response.Output.Write(sw.ToString());
+
+            Response.Flush();
+            Response.End();
+        }
+
+
     }
 }

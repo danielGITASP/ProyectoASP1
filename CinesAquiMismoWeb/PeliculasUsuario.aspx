@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" Theme="TemaPU" CodeBehind="PeliculasUsuario.aspx.cs" Inherits="CinesAquiMismoWeb.PeliculasUsuario" %>
+<link href="Estilos/Cartelera.css" rel="stylesheet" />
 
 <!DOCTYPE html>
 
@@ -8,19 +9,21 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server" style="background-image: url('img/pelisusuario.jpg'); background-repeat: repeat-y">
+    <form id="form1" align="center" runat="server" style="background-image: none; background-repeat: no-repeat">
     <div>
-    <h1>Cartelera</h1>
+    <h1>
+        <asp:Label ID="Label2" runat="server" Text="Cartelera" Font-Bold="True" Font-Italic="True" Font-Overline="False" Font-Strikeout="False" Font-Underline="True" ForeColor="White"></asp:Label>
+    </h1>
     </div>
         <p>
             &nbsp;<asp:Label ID="Label1" runat="server" Text="Label">Filtrado por nombre de Cine:</asp:Label>
             <asp:DropDownList ID="ddlNombreCine" runat="server" OnSelectedIndexChanged="ddlNombreCine_SelectedIndexChanged" AutoPostBack="True">
             </asp:DropDownList>
         </p>
-        <asp:GridView ID="dgvUsuPelis" runat="server" AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" OnRowCommand="comprarTicket" Font-Bold="True" Font-Size="X-Large">
+        <asp:GridView ID="dgvUsuPelis" align="center" runat="server" AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" OnRowCommand="comprarTicket" Font-Bold="True" Font-Size="X-Large">
             <Columns>
                 <asp:BoundField DataField="IdPelicula" HeaderText="IdPelicula" />
-                <asp:BoundField DataField="Nombre Cine" HeaderText="Nombre Cine" />
+                <asp:BoundField DataField="NombreCine" HeaderText="NombreCine" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Precio" HeaderText="Precio" />
                 <asp:BoundField DataField="CineId" HeaderText="CineId" />

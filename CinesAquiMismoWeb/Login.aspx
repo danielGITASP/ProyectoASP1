@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Theme="TemaLogin" CodeBehind="Login.aspx.cs" Inherits="CinesAquiMismoWeb.Login" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" Theme="TemaLogin" CodeBehind="Login.aspx.cs" Inherits="CinesAquiMismoWeb.Login"   %>
+<link href="Site.css" rel="stylesheet" />
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -18,15 +18,21 @@
             margin-left: 0px;
         }
         .auto-style4 {
-            margin-left: 187px;
+            margin-left: 68px;
         }
         .auto-style5 {
             margin-left: 40px;
         }
+        .auto-style6 {
+            margin-left: 0px;
+        }
+        .auto-style7 {
+            margin-left: 84px;
+        }
     </style>
 </head>
 <body>
-    <form id="form1" runat="server" style="background-image: url('img/logincines.jpg'); background-repeat: repeat-y;">
+    <form id="form1" runat="server" align="center" style="background-position: 400px; background-image: none; background-repeat: repeat-y;">
         <div>
             <h1>
                 <asp:Label ID="Label13" runat="server" Text="CinesAquiMismo-Web"></asp:Label>
@@ -59,9 +65,8 @@
         <p class="auto-style2">
             
             &nbsp;</p>
-        <div class="auto-style1">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnAcceder" runat="server" Text="Acceder" OnClick="btnAcceder_Click" ValidationGroup="login" Font-Bold="True" Font-Size="Medium" ForeColor="Black" Height="38px" Width="109px" />
+        <div class="auto-style7">
+            <asp:Button ID="btnAcceder" runat="server" Text="Acceder" OnClick="btnAcceder_Click" ValidationGroup="login" Font-Bold="True" Font-Size="Medium" ForeColor="Black" Height="38px" Width="109px" CssClass="auto-style6" />
         </div>
         <h1>
             <asp:Label ID="Label9" runat="server" Text="Label">REGISTRO</asp:Label>
@@ -99,7 +104,7 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtLogin" ErrorMessage="Falta Login." ForeColor="Red" ValidationGroup="registro">*</asp:RequiredFieldValidator>
         </p>
         <p class="auto-style2">
-            &nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label15" runat="server" Text="Móvil:" Visible="False"></asp:Label>
             <asp:TextBox ID="txtMovil" runat="server" ValidationGroup="registro" Visible="False"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtMovil" ErrorMessage="Falta el Móvil." ForeColor="Red" ValidationGroup="registro">*</asp:RequiredFieldValidator>

@@ -9,8 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos;
+using CinesAquiMismoWeb.DataSet1TableAdapters;
 
 namespace CinesAquiMismoWeb
 {
@@ -53,8 +52,10 @@ namespace CinesAquiMismoWeb
 
                 if (emailT == emailU)
                 {
+                    //string nuevaContra = GeneraContraseña();
+                    //CambiaContraseña(usuariosTabla[i].idUsuario, nuevaContra);
                     mandado = true;
-                    mm.Body = "Tu contraseña es " + usuariosTabla[i].Password;
+                    mm.Body = "Ve a este link: <a href=" + "http://cinesaquimismoasp.azurewebsites.net/ContraCambioLink.aspx?usuID=" + usuariosTabla[i].idUsuario + ">Cambiar Contraseña</a>";
                     smtp.Send(mm);
                     lblCorreo.ForeColor = System.Drawing.Color.Green;
                     lblCorreo.Text = "Se ha enviado el correo";
@@ -69,8 +70,34 @@ namespace CinesAquiMismoWeb
                 lblCorreo.Visible = true;
             }
 
-
-
         }
+
+
+        //public string GeneraContraseña()
+        //{
+        //    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        //    var stringChars = new char[8];
+        //    var random = new Random();
+
+        //    for (int j = 0; j < stringChars.Length; j++)
+        //    {
+        //        stringChars[j] = chars[random.Next(chars.Length)];
+        //    }
+
+        //    var finalString = new String(stringChars);
+        //    return finalString;
+        //}
+
+        //public void CambiaContraseña(int id, string ncontra)
+        //{
+        //    DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByidUsuario(id);
+        //    regUsuario.Password = ncontra;
+
+        //    usuariosAdapter.Update(regUsuario);
+        //    usuariosTabla.AcceptChanges();
+
+        //}
+
+
     }
 }

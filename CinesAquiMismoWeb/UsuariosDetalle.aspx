@@ -60,10 +60,6 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNombre" ErrorMessage="Falta Nombre." ForeColor="Red">*</asp:RequiredFieldValidator>
         </p>
         <p>
-            <asp:Label ID="Label3" runat="server" Text="Label">Password:</asp:Label>&nbsp;<asp:TextBox ID="txtPass" runat="server" MaxLength="15"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPass" ErrorMessage="Falta Contraseña." ForeColor="Red">*</asp:RequiredFieldValidator>
-        </p>
-        <p>
             <asp:Label ID="Label4" runat="server" Text="Label">Alias:</asp:Label>&nbsp;<asp:TextBox ID="txtAlias" runat="server" MaxLength="15"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAlias" ErrorMessage="Falta Alias." ForeColor="Red">*</asp:RequiredFieldValidator>
         </p>
@@ -89,9 +85,18 @@
         </p>
         <p>
             <asp:Label ID="Label7" runat="server" Text="Email:"></asp:Label>
-            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" MaxLength="30"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtEmail" ErrorMessage="Falta Email." ForeColor="Red">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email incorrecto." ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+        </p>
+        <p>
+            <asp:Label ID="Label3" runat="server" Text="Password:"></asp:Label>&nbsp;<asp:TextBox ID="txtPass" runat="server" MaxLength="15"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPass" ErrorMessage="Falta Contraseña." ForeColor="Red">*</asp:RequiredFieldValidator>
+        </p>
+        <p>
+            <asp:Label ID="Label8" runat="server" Text="Repetir contraseña: "></asp:Label>
+            <asp:TextBox ID="txtRContra" runat="server"></asp:TextBox>
+            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPass" ControlToValidate="txtRContra" ErrorMessage="Contraseñas distintas." ForeColor="Red">*</asp:CompareValidator>
         </p>
         <asp:Button ID="btnAceptar" runat="server" OnClick="btnAceptar_Click" OnClientClick="pop()" Text="Aceptar" />
         <asp:Button ID="btnVolver" runat="server" Text="Volver" CausesValidation="False" OnClick="btnVolver_Click" />

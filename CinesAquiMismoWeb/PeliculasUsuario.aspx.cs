@@ -1,6 +1,4 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
+﻿using CinesAquiMismoWeb.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,8 +66,8 @@ namespace CinesAquiMismoWeb
                 idCineUsu = Convert.ToInt32(dgvUsuPelis.Rows[i].Cells[4].Text);
                 for (int j = 0; j < cinesTabla.Count; j++)
                 {
-                    idCinecb = cinesTabla[j].IdCine;
-                    nombre = cinesTabla[j].Nombre_Cine;
+                    idCinecb = cinesTabla[j].idCine;
+                    nombre = cinesTabla[j].NombreCine;
                     zona = cinesTabla[j].Zona;
                     if (idCinecb == idCineUsu)
                     {
@@ -112,8 +110,7 @@ namespace CinesAquiMismoWeb
 
         protected void btnCambiar_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow", "window.open('ContraCambio.aspx','Cambio de Contraseña','menubar=1,resizable=1,width=900,height=600');", true);
-
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow", "window.open('ContraCambio.aspx','Cambio de Contraseña','menubar=1,resizable=1,width=600,height=140');", true);
         }
     }
 }

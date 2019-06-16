@@ -57,8 +57,7 @@
                 </chartareas>
              </asp:Chart>
                         
-               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT IdPelicula, Nombre, Precio, CineId, Cines.Zona AS Zona, Cines.[Nombre Cine] AS [Nombre Cine]
-                 FROM Peliculas,Cines WHERE Peliculas.CineId = Cines.IdCine ORDER BY IdPelicula"></asp:SqlDataSource>
+               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:cinesaquimismoConnectionString1 %>" SelectCommand="SELECT * FROM [Peliculas]"></asp:SqlDataSource>
             </div>
                 
             <div id="right" style="float:right;margin-right: 200px;">

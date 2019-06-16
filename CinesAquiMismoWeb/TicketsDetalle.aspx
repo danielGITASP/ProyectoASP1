@@ -28,7 +28,7 @@
         <div>
             <h1 style="color: #0000FF">TICKETS DETALLE</h1>
         </div>
-    <p>Codigo:<asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
+    <p>Codigo:<asp:TextBox ID="txtCodigo" runat="server" Enabled="False"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCodigo" ErrorMessage="Falta el Codigo." ForeColor="Red">*</asp:RequiredFieldValidator>
     </p>
         <p>Fecha:

@@ -1,6 +1,4 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
+﻿using CinesAquiMismoWeb.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,7 +90,7 @@ namespace CinesAquiMismoWeb
             {
                 for (int i = 0; i < cinesTabla.Count; i++)
                 {
-                    nombre = cinesTabla[i].Nombre_Cine;
+                    nombre = cinesTabla[i].NombreCine;
                     zona = cinesTabla[i].Zona;
 
                     if (txtNombreCine.Text == nombre)
@@ -107,7 +105,7 @@ namespace CinesAquiMismoWeb
             {
                 for (int i = 0; i < cinesTabla.Count - 1; i++)
                 {
-                    nombre = cinesTabla[i].Nombre_Cine;
+                    nombre = cinesTabla[i].NombreCine;
                     zona = cinesTabla[i].Zona;
 
                     if (txtNombreCine.Text == nombreActual && ddlZonasD.SelectedValue == zonaActual)

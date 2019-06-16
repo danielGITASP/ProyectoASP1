@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Paises.aspx.cs" Inherits="CinesAquiMismoWeb.Paises" MasterPageFile="~/PaginaMaestra.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Paises.aspx.cs" Inherits="CinesAquiMismoWeb.Paises" EnableEventValidation = "false" MasterPageFile="~/PaginaMaestra.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Estilos/Paises.css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <style type="text/css">
@@ -11,13 +12,17 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server" style="background-image: url('img/paises.jpg'); background-repeat: repeat-y;">
+    <form id="form1" align="center" runat="server" style="background-image: none; background-repeat: no-repeat;">
         <div>
             <asp:Label ID="Label1" runat="server" BackColor="#6699FF" Text="Filtrado por Nombre:"></asp:Label>
 &nbsp;<asp:DropDownList ID="ddlPaises" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPaises_SelectedIndexChanged">
             </asp:DropDownList>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnExcel" runat="server" CssClass="mybtn" OnClick="btnExcel_Click" Text="Exportar a Excel" />
+&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnPDF" runat="server" CssClass="mybtn" OnClick="btnPDF_Click" Text="Exportar a Word" />
         </div>
-        <asp:GridView ID="dgvPaises" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" OnRowDeleting="dgvPaises_RowDeleting" OnSelectedIndexChanged="dgvPaises_SelectedIndexChanged">
+        <asp:GridView ID="dgvPaises" align="center" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" OnRowDeleting="dgvPaises_RowDeleting" OnSelectedIndexChanged="dgvPaises_SelectedIndexChanged" Font-Bold="True" Font-Size="X-Large">
             <Columns>
                 <asp:CommandField ButtonType="Button" HeaderText="Edit" SelectText="@" ShowSelectButton="True" />
                 <asp:BoundField DataField="IdPais" HeaderText="IdPais" />

@@ -1,6 +1,4 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
+﻿using CinesAquiMismoWeb.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -98,10 +96,11 @@ namespace CinesAquiMismoWeb
                     peliculaId = paisesTabla[i].PeliculaId;
                     valoracion = paisesTabla[i].Valoracion;
 
-                    if((ddlNombrePais.SelectedValue == nombre) && (Convert.ToInt32(txtNumVisitas.Text) == numVisitas) && (Convert.ToInt32(ddlPeli.SelectedValue) == peliculaId) && (Convert.ToInt32(ddlValor.SelectedValue) == valoracion))
+                    if((ddlNombrePais.SelectedValue == nombre) && (Convert.ToInt32(ddlPeli.SelectedValue) == peliculaId))
                     {
                         Repetido = true;
                     }
+
 
                 }
             }
@@ -114,14 +113,14 @@ namespace CinesAquiMismoWeb
                     peliculaId = paisesTabla[i].PeliculaId;
                     valoracion = paisesTabla[i].Valoracion;
 
-                    if(ddlNombrePais.SelectedValue == nombreA && Convert.ToInt32(txtNumVisitas.Text) == numVisitasA && Convert.ToInt32(ddlPeli.SelectedValue) == peliculaIdA && Convert.ToInt32(ddlValor.SelectedValue) == valoracionA)
+                    if(ddlNombrePais.SelectedValue == nombreA && Convert.ToInt32(ddlPeli.SelectedValue) == peliculaIdA)
                     {
                         i++;
                         Repetido = false;
                     }
                     else
                     {
-                        if ((ddlNombrePais.SelectedValue == nombre) && (Convert.ToInt32(txtNumVisitas.Text) == numVisitas) && (Convert.ToInt32(ddlPeli.SelectedValue) == peliculaId) && (Convert.ToInt32(ddlValor.SelectedValue) == valoracion))
+                        if ((ddlNombrePais.SelectedValue == nombre) && (Convert.ToInt32(ddlPeli.SelectedValue) == peliculaId))
                         {
                             Repetido = true;
                         }
@@ -133,6 +132,7 @@ namespace CinesAquiMismoWeb
             if (Repetido)
             {
                 Response.Write("<script>alert('YA EXISTE ESA VALORACIÓN EN ESE PAIS')</script>");
+                return;
             }
 
             if(pais.IdPais == -1)

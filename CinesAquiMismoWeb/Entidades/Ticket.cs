@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicaNegocioyADatos.Entidades
+namespace CinesAquiMismoWeb
 {
     public class Ticket
     {
@@ -36,7 +36,7 @@ namespace LogicaNegocioyADatos.Entidades
 
         public Ticket(DataSet1.TicketsRow regTicket)
         {
-            this.idTicket = regTicket.IdTicket;
+            this.idTicket = regTicket.idTicket;
             this.codigo = regTicket.Codigo;
             this.fecha = regTicket.Fecha.Date;
             this.usuarioId = regTicket.UsuarioId;

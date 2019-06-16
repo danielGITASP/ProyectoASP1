@@ -1,8 +1,8 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
+﻿
+using CinesAquiMismoWeb.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -145,7 +145,7 @@ namespace CinesAquiMismoWeb
 
             for (int i = 0; i < peliculasTabla.Count; i++)
             {
-                nombreCine = peliculasTabla[i].Nombre_Cine;
+                nombreCine = peliculasTabla[i].NombreCine;
                 foreach(TableCell cell in e.Row.Cells)
                 {
                     if (nDgv == nombreCine)
@@ -165,5 +165,57 @@ namespace CinesAquiMismoWeb
         }
 
 
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+
+            Response.Clear();
+            Response.Buffer = true;
+
+            Response.AddHeader("content-disposition", "attachment;filename=Cines.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/ms-excel ";
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            dgvCines.AllowPaging = false;
+            CargaZonas();
+
+            dgvCines.RenderControl(hw);
+
+            Response.Output.Write(sw.ToString());
+
+            Response.Flush();
+            Response.End();
+        }
+
+
+        protected void btnPDF_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+
+            Response.AddHeader("content-disposition", "attachment;filename=Cines.doc");
+            Response.Charset = "";
+            Response.ContentType = "application/ms-word ";
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            dgvCines.AllowPaging = false;
+            CargaZonas();
+          
+            dgvCines.RenderControl(hw);
+
+            Response.Output.Write(sw.ToString());
+
+            Response.Flush();
+            Response.End();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" Theme="TemaPD" CodeBehind="ComprarTicket.aspx.cs" Inherits="CinesAquiMismoWeb.ComprarTicket" %>
+<link href="Estilos/CompraTicket.css" rel="stylesheet" />
 
 <!DOCTYPE html>
 
@@ -33,14 +34,14 @@
     </script>
     </head>
 <body>
-    <form id="form1" runat="server" style="background-image: url('img/taquillas-660x374.jpg'); background-repeat: repeat-x">
+    <form id="form1" runat="server" style="background-image: none; background-repeat: no-repeat">
     <div>
     
        <asp:Label ID="Label1" runat="server" Text="Label"> Nº de Tarjeta:</asp:Label>
         <asp:TextBox ID="txtNTarjeta" runat="server" MaskType="None" Mask="0000-0000-0000-0000" AutoPostBack="True" MaxLength="16" TextMode="Number" Width="151px"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNTarjeta" ErrorMessage="*" ForeColor="Red" BackColor="White"></asp:RequiredFieldValidator>
 &nbsp;&nbsp;<asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtNTarjeta" ErrorMessage="Debe ser un número de 16 dígitos." ForeColor="Red" OnServerValidate="CustomValidatorTarjeta_ServerValidate" BackColor="White" ValidateEmptyText="True"></asp:CustomValidator>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="Label5" runat="server" Text="Label">Tu código:</asp:Label><asp:TextBox ID="txtVCodigo" runat="server" Height="20px" ReadOnly="True" Width="557px"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
     
     </div>
         <p>
@@ -69,6 +70,10 @@
         <asp:Button ID="btnGenerar" runat="server" OnClick="btnGenerar_Click" Text="Generar" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnVolver" runat="server" PostBackUrl="~/PeliculasUsuario.aspx" Text="Volver" CausesValidation="False" OnClick="btnVolver_Click" />
+        <p>
+            <asp:Label ID="Label5" runat="server" Text="Label">Tu código:</asp:Label><asp:TextBox ID="txtVCodigo" runat="server" Height="20px" ReadOnly="True" Width="369px"></asp:TextBox>
+    
+        </p>
     </form>
 </body>
 </html>

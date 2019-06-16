@@ -1,7 +1,4 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +12,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.html;
 using iTextSharp.text.html.simpleparser;
+using CinesAquiMismoWeb.DataSet1TableAdapters;
 
 namespace CinesAquiMismoWeb
 {
@@ -112,8 +110,8 @@ namespace CinesAquiMismoWeb
                 idCineUsu = Convert.ToInt32(dgvAdminP.Rows[i].Cells[4].Text);
                 for (int j = 0; j < cinesTabla.Count; j++)
                 {
-                    idCinecb = cinesTabla[j].IdCine;
-                    nombre = cinesTabla[j].Nombre_Cine;
+                    idCinecb = cinesTabla[j].idCine;
+                    nombre = cinesTabla[j].NombreCine;
                     zona = cinesTabla[j].Zona;
                     if (idCinecb == idCineUsu)
                     {
@@ -286,6 +284,11 @@ namespace CinesAquiMismoWeb
 
             Response.Flush();
             Response.End();
+        }
+
+        protected void dgvAdminP_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
         }
     }
 }

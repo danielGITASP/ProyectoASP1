@@ -1,8 +1,8 @@
-﻿namespace LogicaNegocioyADatos
+﻿namespace CinesAquiMismoWeb
 {
 }
 
-namespace LogicaNegocioyADatos
+namespace CinesAquiMismoWeb
 {
 
 
@@ -10,7 +10,7 @@ namespace LogicaNegocioyADatos
     {
     }
 }
-namespace LogicaNegocioyADatos {
+namespace CinesAquiMismoWeb {
     
     
     public partial class DataSet1 {

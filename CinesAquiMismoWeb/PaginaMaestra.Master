@@ -10,10 +10,16 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
+    <style type="text/css">
+        .auto-style1 {
+            width: 396px;
+        }
+    </style>
+
 </head>
 
-<body>
-    <h1><u>---Cines Aqui Mismo---</u></h1>
+<body>   
+    <h1 class="auto-style1"><asp:Label ID="Label1" runat="server" Text="&lt;u&gt;---Cines Aqui Mismo---&lt;/u&gt;" BackColor="Blue" ForeColor="Brown"></asp:Label></h1>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
         <div style="width:1024px; height:auto; background-repeat: repeat-y">

@@ -1,12 +1,14 @@
-﻿using LogicaNegocioyADatos.DataSet1TableAdapters;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LogicaNegocioyADatos.Entidades;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using CinesAquiMismoWeb.DataSet1TableAdapters;
 
-namespace LogicaNegocioyADatos
+namespace CinesAquiMismoWeb
 {
     public class LNyAD
     {
@@ -79,7 +81,7 @@ namespace LogicaNegocioyADatos
 
         public static void EliminarPelicula(int idPelicula)
         {
-            DataSet1.PeliculasRow regPelicula = peliculasTabla.FindByIdPelicula(idPelicula);
+            DataSet1.PeliculasRow regPelicula = peliculasTabla.FindByidPelicula(idPelicula);
             regPelicula.Delete();
 
             peliculasAdapter.Update(peliculasTabla);
@@ -118,7 +120,7 @@ namespace LogicaNegocioyADatos
 
         public static void AddPelicula(Pelicula peli)
         {
-            DataSet1.PeliculasRow regPelicula = peliculasTabla.FindByIdPelicula(peli.IdPelicula);
+            DataSet1.PeliculasRow regPelicula = peliculasTabla.FindByidPelicula(peli.IdPelicula);
             regPelicula = peliculasTabla.NewPeliculasRow();
 
             regPelicula.Nombre = peli.Nombre;
@@ -134,21 +136,22 @@ namespace LogicaNegocioyADatos
 
         public static void ModificaPelicula(Pelicula peli)
         {
-            DataSet1.PeliculasRow regPelicula = peliculasTabla.FindByIdPelicula(peli.IdPelicula);
+            DataSet1.PeliculasRow regPelicula = peliculasTabla.FindByidPelicula(peli.IdPelicula);
 
             regPelicula.Nombre = peli.Nombre;
             regPelicula.Precio = peli.Precio;
             regPelicula.CineId = peli.CineId;
 
-            peliculasAdapter.Update(regPelicula);
-            peliculasTabla.AcceptChanges();
+            peliculasAdapter.UpdatePeliculas(regPelicula.Nombre, Convert.ToDecimal(regPelicula.Precio), regPelicula.CineId, peli.IdPelicula);
+            //peliculasAdapter.Update(regPelicula);
+            //peliculasTabla.AcceptChanges();
         }
 
         public static Pelicula DevuelvePelicula(int idPelicula)
         {
-            DataSet1.PeliculasRow regPelicula = peliculasTabla.FindByIdPelicula(idPelicula);
+            DataSet1.PeliculasRow regPelicula = peliculasTabla.FindByidPelicula(idPelicula);
 
-            return new Pelicula(idPelicula, regPelicula.Nombre, regPelicula.Precio, regPelicula.CineId);
+            return new Pelicula(idPelicula, regPelicula.Nombre, Convert.ToDouble(regPelicula.Precio), regPelicula.CineId);
         }
 
 
@@ -179,7 +182,7 @@ namespace LogicaNegocioyADatos
 
             for (int i = 0; i < cinesTabla.Rows.Count; i++)
             {
-                nombreC = cinesTabla[i].Nombre_Cine;
+                nombreC = cinesTabla[i].NombreCine;
                 zonaC = cinesTabla[i].Zona;
 
                 if (nombre == nombreC && zonaC == zona)
@@ -194,26 +197,27 @@ namespace LogicaNegocioyADatos
 
         public static Cine DevuelveCine(int idCine)
         {
-            DataSet1.CinesRow regCine = cinesTabla.FindByIdCine(idCine);
+            DataSet1.CinesRow regCine = cinesTabla.FindByidCine(idCine);
 
-            return new Cine(idCine, regCine.Nombre_Cine, regCine.Zona);
+            return new Cine(idCine, regCine.NombreCine, regCine.Zona);
         }
 
         public static void EliminarCine(int idCine)
         {
-            DataSet1.CinesRow regCine = cinesTabla.FindByIdCine(idCine);
-            regCine.Delete();
+            DataSet1.CinesRow regCine = cinesTabla.FindByidCine(idCine);
+            //regCine.Delete();
 
-            cinesAdapter.Update(cinesTabla);
-            cinesTabla.AcceptChanges();
+            cinesAdapter.DeleteCine(idCine);
+            //cinesAdapter.Update(cinesTabla);
+            //cinesTabla.AcceptChanges();
         }
 
         public static void AddCine(Cine cine)
         {
-            DataSet1.CinesRow regCine = cinesTabla.FindByIdCine(cine.IdCine);
+            DataSet1.CinesRow regCine = cinesTabla.FindByidCine(cine.IdCine);
             regCine = cinesTabla.NewCinesRow();
 
-            regCine.Nombre_Cine = cine.NombreCine;
+            regCine.NombreCine = cine.NombreCine;
             regCine.Zona = cine.Zona;
 
             cinesTabla.AddCinesRow(regCine);
@@ -224,20 +228,21 @@ namespace LogicaNegocioyADatos
 
         public static void ModificaCine(Cine cine)
         {
-            DataSet1.CinesRow regCine = cinesTabla.FindByIdCine(cine.IdCine);
+            DataSet1.CinesRow regCine = cinesTabla.FindByidCine(cine.IdCine);
 
-            regCine.Nombre_Cine = cine.NombreCine;
+            regCine.NombreCine = cine.NombreCine;
             regCine.Zona = cine.Zona;
 
-            cinesAdapter.Update(regCine);
-            cinesTabla.AcceptChanges();
+            cinesAdapter.UpdateCines(regCine.NombreCine, regCine.Zona, cine.IdCine);
+            //cinesAdapter.Update(regCine);
+            //cinesTabla.AcceptChanges();
         }
 
         //METODOS DE USUARIOS 
 
         public static Usuario DevuelveUsuario(int IdUsuario)
         {
-            DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByIdUsuario(IdUsuario);
+            DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByidUsuario(IdUsuario);
 
             return new Usuario(IdUsuario, regUsuario.Nombre, regUsuario.Password, regUsuario.Alias, regUsuario.Login, regUsuario.Acceso, regUsuario.TipoAcceso,  regUsuario.Movil, regUsuario.Email);
         }
@@ -268,16 +273,16 @@ namespace LogicaNegocioyADatos
 
         public static void EliminarUsuario(int idUsu)
         {
-            DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByIdUsuario(idUsu);
-            regUsuario.Delete();
-
-            usuariosAdapter.Update(usuariosTabla);
-            usuariosTabla.AcceptChanges();
+            DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByidUsuario(idUsu);
+            //regUsuario.Delete();
+            usuariosAdapter.DeleteUsuario(idUsu);
+            //usuariosAdapter.Update(usuariosTabla);
+            //usuariosTabla.AcceptChanges();
         }
 
         public static void AddUsuario(Usuario usuario)
         {
-            DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByIdUsuario(usuario.IdUsuario);
+            DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByidUsuario(usuario.IdUsuario);
             regUsuario = usuariosTabla.NewUsuariosRow();
 
             regUsuario.Nombre = usuario.Nombre;
@@ -297,7 +302,7 @@ namespace LogicaNegocioyADatos
 
         public static void ModificaUsuario(Usuario usuario)
         {
-            DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByIdUsuario(usuario.IdUsuario);
+            DataSet1.UsuariosRow regUsuario = usuariosTabla.FindByidUsuario(usuario.IdUsuario);
 
             regUsuario.Nombre = usuario.Nombre;
             regUsuario.Password = usuario.Password;
@@ -308,8 +313,10 @@ namespace LogicaNegocioyADatos
             regUsuario.Movil = usuario.Movil1;
             regUsuario.Email = usuario.Email1;
 
-            usuariosAdapter.Update(regUsuario);
-            usuariosTabla.AcceptChanges();
+            usuariosAdapter.UpdateUsuario(regUsuario.Nombre, regUsuario.Password, regUsuario.Alias, regUsuario.Login, regUsuario.Acceso,
+                regUsuario.TipoAcceso, regUsuario.Movil, regUsuario.Email, usuario.IdUsuario);
+            //usuariosAdapter.Update(regUsuario);
+            //usuariosTabla.AcceptChanges();
         }
 
         public static DataSet1.UsuariosDataTable TablaUsuarios(int idAcceso, string acceso)
@@ -355,42 +362,41 @@ namespace LogicaNegocioyADatos
 
         public static Pais DevuelvePais(int idPais)
         {
-            DataSet1.PaisesRow regPais = paisesTabla.FindByIdPais(idPais);
+            DataSet1.PaisesRow regPais = paisesTabla.FindByidPais(idPais);
 
             return new Pais(idPais, regPais.NombrePais, regPais.NumVisitas, regPais.PeliculaId, regPais.Valoracion);
         }
 
         public static void EliminarPais(int idPais)
         {
-            DataSet1.PaisesRow regPais = paisesTabla.FindByIdPais(idPais);
-            regPais.Delete();
-
-            paisesAdapter.Update(paisesTabla);
-            paisesTabla.AcceptChanges();
+            DataSet1.PaisesRow regPais = paisesTabla.FindByidPais(idPais);
+            //regPais.Delete();
+            paisesAdapter.DeletePais(idPais);
+            //paisesAdapter.Update(paisesTabla);
+            //paisesTabla.AcceptChanges();
         }
 
         public static void ModificaPais(Pais pais)
         {
-            DataSet1.PaisesRow regPais = paisesTabla.FindByIdPais(pais.IdPais);
+            DataSet1.PaisesRow regPais = paisesTabla.FindByidPais(pais.IdPais);
 
             regPais.NombrePais = pais.NombrePais;
             regPais.NumVisitas = pais.NumVisitas;
-            //regPais.Pelicula = pais.
             regPais.PeliculaId = pais.PeliculaId;
             regPais.Valoracion = pais.Valoracion;
 
-            paisesAdapter.Update(regPais);
-            paisesTabla.AcceptChanges();
+            paisesAdapter.UpdatePais(regPais.NombrePais, regPais.NumVisitas, regPais.PeliculaId, regPais.Valoracion, pais.IdPais);
+            //paisesAdapter.Update(regPais);
+            //paisesTabla.AcceptChanges();
         }
 
         public static void AddPais(Pais pais)
         {
-            DataSet1.PaisesRow regPais = paisesTabla.FindByIdPais(pais.IdPais);
+            DataSet1.PaisesRow regPais = paisesTabla.FindByidPais(pais.IdPais);
             regPais = paisesTabla.NewPaisesRow();
 
             regPais.NombrePais = pais.NombrePais;
             regPais.NumVisitas = pais.NumVisitas;
-            //regPais.Pelicula = pais.
             regPais.PeliculaId = pais.PeliculaId;
             regPais.Valoracion = pais.Valoracion;
 
@@ -417,9 +423,9 @@ namespace LogicaNegocioyADatos
         public static Ticket DevuelveTicket(int idTicket)
         {
             ticketsTabla = ticketsAdapter.GetData();
-            DataSet1.TicketsRow regTicket = ticketsTabla.FindByIdTicket(idTicket);
+            DataSet1.TicketsRow regTicket = ticketsTabla.FindByidTicket(idTicket);
 
-            return new Ticket(regTicket.IdTicket, regTicket.Codigo, regTicket.Fecha, regTicket.UsuarioId);
+            return new Ticket(regTicket.idTicket, regTicket.Codigo, regTicket.Fecha, regTicket.UsuarioId);
         }
 
         public static List<Usuario> ListaUsuarios()
@@ -435,15 +441,16 @@ namespace LogicaNegocioyADatos
 
         public static void ModificaTicket(Ticket ticket)
         {
-            DataSet1.TicketsRow regTicket = ticketsTabla.FindByIdTicket(ticket.IdTicket);
+            DataSet1.TicketsRow regTicket = ticketsTabla.FindByidTicket(ticket.IdTicket);
 
-            regTicket.IdTicket = ticket.IdTicket;
+            //regTicket.idTicket = ticket.IdTicket;
             regTicket.Codigo = ticket.Codigo;
             regTicket.Fecha = ticket.Fecha;
             regTicket.UsuarioId = ticket.UsuarioId;
 
-            ticketsAdapter.Update(regTicket);
-            ticketsTabla.AcceptChanges();
+            ticketsAdapter.UpdateTickets(regTicket.Codigo, regTicket.Fecha, regTicket.UsuarioId, ticket.IdTicket);
+            //ticketsAdapter.Update(regTicket);
+            //ticketsTabla.AcceptChanges();
         }
 
         public static void EliminarTicket(int idTicket)
@@ -457,7 +464,7 @@ namespace LogicaNegocioyADatos
 
         public static void AddTicket(Ticket ticket)
         {
-            DataSet1.TicketsRow regTicket = ticketsTabla.FindByIdTicket(ticket.IdTicket);
+            DataSet1.TicketsRow regTicket = ticketsTabla.FindByidTicket(ticket.IdTicket);
             regTicket = ticketsTabla.NewTicketsRow();
 
             regTicket.Codigo = ticket.Codigo;

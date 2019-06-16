@@ -1,6 +1,4 @@
-﻿using LogicaNegocioyADatos;
-using LogicaNegocioyADatos.DataSet1TableAdapters;
-using LogicaNegocioyADatos.Entidades;
+﻿using CinesAquiMismoWeb.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,13 +36,14 @@ namespace CinesAquiMismoWeb
                 if (!Page.IsPostBack)
                 {
                     usuario1 = (Usuario)Session["Usuario"];
-                    if (usuario1.IdUsuario != -1) //Si NO es añadir
+                    if (usuario1.IdUsuario != -1) //Editar
                     {
                         CargarControles();
 
                     }
-                    else
+                    else //Añadir
                     {
+                        //CargarControlesA();
                         ddlAccesoD.Items.Insert(0, "Elige un Acceso");
                     }
                 }
@@ -54,13 +53,24 @@ namespace CinesAquiMismoWeb
                 Response.Write("<script>alert('NO ACCEDER MEDIANTE URL, USUARIO NO LOGEADO')</script>");
                 Response.Redirect("Login.aspx");
             }
-            
+
+        }
+
+        private void CargarControlesA()
+        {
+            Label3.Visible = true;
+            txtPass.Visible = true;
+            RequiredFieldValidator2.Enabled = true;
         }
 
         private void CargarControles()
-        {
+        {          
             txtNombre.Text = usuario1.Nombre;
-            txtPass.Text = usuario1.Password;
+
+            Label3.Visible = false;
+            txtPass.Visible = false;
+            RequiredFieldValidator2.Enabled = false;
+
             txtAlias.Text = usuario1.Alias;
             txtLogin.Text = usuario1.Login;
             ddlAccesoD.SelectedValue = usuario1.TipoAcceso;
@@ -84,6 +94,9 @@ namespace CinesAquiMismoWeb
             String loginU;
             String loginActual = ((Usuario)Session["Usuario"]).Login;
 
+            String correoU;
+            String correoActual = ((Usuario)Session["Usuario"]).Email1;
+
             bool Repetida = false;
 
             usuariosTabla = usuariosAdapter.GetData();
@@ -95,6 +108,7 @@ namespace CinesAquiMismoWeb
                     nombreU = usuariosTabla[i].Nombre;
                     aliasU = usuariosTabla[i].Alias;
                     loginU = usuariosTabla[i].Login;
+                    correoU = usuariosTabla[i].Email;
 
                     if (txtNombre.Text == nombreU)
                     {
@@ -102,6 +116,19 @@ namespace CinesAquiMismoWeb
                             if(txtLogin.Text == loginU)
                             Repetida = true;
                     }
+
+                    if (txtNombre.Text == nombreU)
+                        Repetida = true;
+
+                    if (txtAlias.Text == aliasU)
+                        Repetida = true;
+
+                    if (txtLogin.Text == loginU)
+                        Repetida = true;
+
+                    if (txtEmail.Text == correoU)
+                        Repetida = true;
+
                 }
             }
             else
@@ -111,6 +138,7 @@ namespace CinesAquiMismoWeb
                     nombreU = usuariosTabla[i].Nombre;
                     aliasU = usuariosTabla[i].Alias;
                     loginU = usuariosTabla[i].Login;
+                    correoU = usuariosTabla[i].Email;
 
                     if (txtNombre.Text == nombreActual && txtAlias.Text == aliasActual && txtLogin.Text == loginActual)
                     {
@@ -125,6 +153,18 @@ namespace CinesAquiMismoWeb
                                 if (txtLogin.Text == loginU)
                                     Repetida = true;
                         }
+
+                        if (txtNombre.Text == nombreU)
+                            Repetida = true;
+
+                        if (txtAlias.Text == aliasU)
+                            Repetida = true;
+
+                        if (txtLogin.Text == loginU)
+                            Repetida = true;
+
+                        if (txtEmail.Text == correoU)
+                            Repetida = true;
                     }
                 }
             }
